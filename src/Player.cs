@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace Abberation;
+namespace Aberration;
 
 public partial class Player : CharacterBody3D {
 
