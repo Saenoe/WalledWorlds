@@ -13,7 +13,10 @@ config_version=5
 config/name="AcerolaJamEntry"
 run/main_scene="res://scenes/TestScene.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [dotnet]
 
