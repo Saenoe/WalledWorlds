@@ -13,6 +13,8 @@ void vertex() {
 }
 
 void fragment() {
+	float smoothing = 1.0 / VIEWPORT_SIZE.y * 5.0;
+	
 	float d = length(UV * 2.0 - 1.0);
 	//if (d > inner_dot_radius) discard;
 	
@@ -20,10 +22,10 @@ void fragment() {
 	float ring_outside = outer_ring_radius + outer_ring_width;
 	
 	float outer_ring =
-		smoothstep(ring_inside - 0.01, ring_inside, d) *
-		smoothstep(ring_outside, ring_outside - 0.01, d);
+		smoothstep(ring_inside - smoothing, ring_inside, d) *
+		smoothstep(ring_outside, ring_outside - smoothing, d);
 	
-	float inner_dot = smoothstep(inner_dot_radius, inner_dot_radius - 0.01, d);
+	float inner_dot = smoothstep(inner_dot_radius, inner_dot_radius - smoothing, d);
 
 	float alpha = min(outer_ring + inner_dot, 1.0);
 

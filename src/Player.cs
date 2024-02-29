@@ -8,8 +8,8 @@ public partial class Player : CharacterBody3D {
 	// todo move this somewhere sane
 	private const float MouseSensitivity = 0.002f;
 
-	[Export] public float WalkSpeed { get; set; } = 10.0f;
-	[Export] public float InteractRange { get; set; } = 1.0f;
+	[Export] public float WalkSpeed { get; set; } = 2.0f;
+	[Export] public float InteractRange { get; set; } = 2.0f;
 
 
 	private Camera3D _camera;
@@ -83,7 +83,7 @@ public partial class Player : CharacterBody3D {
 			}
 		} else {
 			_crosshair.Active = false;
-			
+
 			if (_interactingWith != null) {
 				_interactingWith.InteractRelease();
 				_interactingWith = null;

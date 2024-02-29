@@ -133,6 +133,9 @@ extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_uli5m")
 script = ExtResource("3_b2r8v")
 Material = ExtResource("2_aa0t2")
+IdleInnerDotRadius = 0.012
+IdleOuterRingRadius = 0.0
+ActiveOuterRingRadius = 0.06
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_njnmo")

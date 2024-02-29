@@ -39,7 +39,7 @@ public partial class Crosshair : Node {
 			_interpValue,
 			ChangeTime,
 			Tween.TransitionType.Cubic,
-			Tween.EaseType.InOut
+			Tween.EaseType.Out
 		);
 
 		Material.SetShaderParameter("inner_dot_radius", innerDotRadius);
