@@ -12,6 +12,7 @@ size = Vector3(0.25, 1.8, 0.25)
 [sub_resource type="QuadMesh" id="QuadMesh_uli5m"]
 material = ExtResource("2_aa0t2")
 flip_faces = true
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gou0a"]
 
@@ -40,22 +41,6 @@ size = Vector3(1, 2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k4oly"]
 size = Vector3(1, 2, 0.1)
-
-[sub_resource type="Animation" id="Animation_i0xul"]
-resource_name = "open"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_ikut7"]
 length = 0.001
@@ -86,6 +71,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i0xul"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ateo"]

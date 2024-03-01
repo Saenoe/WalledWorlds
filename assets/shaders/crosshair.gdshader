@@ -1,11 +1,14 @@
 shader_type spatial;
 render_mode unshaded, shadows_disabled;
 
+uniform float scale = 5;
+
 uniform float inner_dot_radius = 0.5;
-uniform vec3 inner_dot_color : source_color = vec3(1.0);
 
 uniform float outer_ring_width;
 uniform float outer_ring_radius;
+
+uniform vec3 color : source_color = vec3(1.0);
 
 void vertex() {
 	float aspect = VIEWPORT_SIZE.x / VIEWPORT_SIZE.y;
@@ -15,7 +18,7 @@ void vertex() {
 void fragment() {
 	float smoothing = 1.0 / VIEWPORT_SIZE.y * 5.0;
 	
-	float d = length(UV * 2.0 - 1.0);
+	float d = length(UV * 2.0 - 1.0) / scale;
 	//if (d > inner_dot_radius) discard;
 	
 	float ring_inside = outer_ring_radius - outer_ring_width;
@@ -31,7 +34,7 @@ void fragment() {
 
 	if (alpha < 0.0001) discard;
 	
-	ALBEDO = vec3(1.0);
+	ALBEDO = color;
 	ALPHA = alpha;
 }
 
