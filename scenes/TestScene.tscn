@@ -40,10 +40,10 @@ radius = 0.1
 height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8ogac"]
-size = Vector3(1, 2, 0.1)
+size = Vector3(0.8, 2, 0.1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k4oly"]
-size = Vector3(1, 2, 0.1)
+size = Vector3(0.8, 2, 0.1)
 
 [sub_resource type="Animation" id="Animation_ikut7"]
 length = 0.001
@@ -231,4 +231,4 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43119, 1.01148, 0)
 stream = SubResource("AudioStreamRandomizer_nbpw0")
 
-[connection signal="Toggled" from="Button" to="Door" method="Toggle" unbinds=1]
+[connection signal="Pressed" from="Button" to="Door" method="Toggle" binds= [false]]

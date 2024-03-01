@@ -54,6 +54,7 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 		AnimationPlayer.Play(OpenAnimation);
 		State = StateEnum.Opening;
 	}
+
 	public void Close() {
 		if (!Interruptible && InMotion) return;
 		
@@ -62,8 +63,9 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 		AnimationPlayer.Play(CloseAnimation);
 		State = StateEnum.Closing;
 	}
+	
 	public void Toggle(bool obeyLock = true) {
-		if (State == StateEnum.Closed || State == StateEnum.Closing) Open();
+		if (State == StateEnum.Closed || State == StateEnum.Closing) Open(obeyLock);
 		else Close();
 	}
 
