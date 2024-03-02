@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace Aberration;
@@ -33,9 +34,9 @@ public partial class Player : CharacterBody3D {
 
 	public override void _Input(InputEvent ev) {
 		if (ev is InputEventMouseMotion mouseMotion) {
-			_camera.Rotation += new Vector3 {
-				X = -mouseMotion.Relative.Y * MouseSensitivity,
-				Y = -mouseMotion.Relative.X * MouseSensitivity,
+			_camera.Rotation = new Vector3 {
+				X = Math.Clamp(_camera.Rotation.X - mouseMotion.Relative.Y * MouseSensitivity, -1.5f, 1.5f),
+				Y = _camera.Rotation.Y - mouseMotion.Relative.X * MouseSensitivity,
 				Z = 0.0f,
 			};
 		}
@@ -47,8 +48,8 @@ public partial class Player : CharacterBody3D {
 
 		Vector3 gravityDirection = state.TotalGravity.Normalized();
 
-		Vector3 forward = NormalAligned(_camera.Basis.Z, -gravityDirection);
-		Vector3 right = NormalAligned(_camera.Basis.X, -gravityDirection);
+		Vector3 forward = NormalAligned(_camera.GlobalBasis.Z, -gravityDirection).Normalized();
+		Vector3 right = NormalAligned(_camera.GlobalBasis.X, -gravityDirection).Normalized();
 
 		Vector3 move =
 			right * (Input.GetActionStrength("MoveRight") - Input.GetActionStrength("MoveLeft")) +
@@ -59,7 +60,11 @@ public partial class Player : CharacterBody3D {
 
 		move *= WalkSpeed;
 
-		Velocity = move;
+		if (IsOnFloor()) {
+			Velocity = move;
+		} else {
+			Velocity += state.TotalGravity * (float)dt;
+		}
 
 		MoveAndSlide();
 
