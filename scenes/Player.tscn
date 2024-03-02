@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbgru8h8oo140"]
+
+[ext_resource type="Script" path="res://src/Player.cs" id="1_lttkd"]
+[ext_resource type="Material" uid="uid://caeh2rxd6gwts" path="res://assets/shaders/crosshair.material" id="2_6p5b4"]
+[ext_resource type="Script" path="res://src/Interaction/Crosshair.cs" id="3_oqtx0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_om4qt"]
+radius = 0.2
+height = 1.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_uli5m"]
+material = ExtResource("2_6p5b4")
+flip_faces = true
+size = Vector2(0.2, 0.2)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 16.1257, 2.15068, 0)
+wall_min_slide_angle = 0.0
+script = ExtResource("1_lttkd")
+WalkSpeed = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000634491, 0.85, -0.00246811)
+shape = SubResource("CapsuleShape3D_om4qt")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+fov = 60.0
+far = 200.0
+
+[node name="Crosshair" type="MeshInstance3D" parent="Camera"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_uli5m")
+script = ExtResource("3_oqtx0")
+Material = ExtResource("2_6p5b4")
+IdleInnerDotRadius = 0.012
+IdleOuterRingRadius = 0.0
+ActiveOuterRingRadius = 0.06

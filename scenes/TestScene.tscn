@@ -1,23 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://3jbvada5k1rb"]
+[gd_scene load_steps=20 format=3 uid="uid://3jbvada5k1rb"]
 
-[ext_resource type="Script" path="res://src/Player.cs" id="1_m10ss"]
-[ext_resource type="Material" uid="uid://caeh2rxd6gwts" path="res://assets/shaders/crosshair.material" id="2_aa0t2"]
-[ext_resource type="Script" path="res://src/Interaction/PhysicalButton.cs" id="2_jcqge"]
+[ext_resource type="PackedScene" uid="uid://dbgru8h8oo140" path="res://scenes/Player.tscn" id="1_baj43"]
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="2_lhm1q"]
-[ext_resource type="Script" path="res://src/Interaction/Crosshair.cs" id="3_b2r8v"]
 [ext_resource type="AudioStream" uid="uid://brnckasvwgjb" path="res://assets/sounds/knock/knock0.ogg" id="6_oaabx"]
 [ext_resource type="AudioStream" uid="uid://d0p4oli0ii4kj" path="res://assets/sounds/knock/knock1.ogg" id="7_px5vl"]
+[ext_resource type="PackedScene" uid="uid://c68hcketsw5ta" path="res://scenes/Interaction/Doorbell.tscn" id="8_2qllu"]
 [ext_resource type="AudioStream" uid="uid://drx4e0pltfdtw" path="res://assets/sounds/knock/knock2.ogg" id="8_sxfja"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lon12"]
-size = Vector3(0.25, 1.8, 0.25)
-
-[sub_resource type="QuadMesh" id="QuadMesh_uli5m"]
-material = ExtResource("2_aa0t2")
-flip_faces = true
-size = Vector2(0.2, 0.2)
+[ext_resource type="PackedScene" uid="uid://cqx0fmnhjq5jk" path="res://scenes/Areas/Lv1.tscn" id="10_15erg"]
+[ext_resource type="PackedScene" uid="uid://ceop8ckbdeqw" path="res://scenes/Cabin.tscn" id="11_n2so0"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gou0a"]
+rayleigh_color = Color(0.301961, 0.403922, 0.6, 1)
+ground_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Sky" id="Sky_7ipj8"]
 sky_material = SubResource("PhysicalSkyMaterial_gou0a")
@@ -25,24 +19,13 @@ sky_material = SubResource("PhysicalSkyMaterial_gou0a")
 [sub_resource type="Environment" id="Environment_njnmo"]
 background_mode = 2
 sky = SubResource("Sky_7ipj8")
+ssao_enabled = true
+ssao_radius = 0.18
 
-[sub_resource type="BoxMesh" id="BoxMesh_nbbd7"]
-size = Vector3(25, 1, 25)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_tf41q"]
-size = Vector3(25, 1, 25)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_nabdp"]
-radius = 0.111259
-
-[sub_resource type="SphereMesh" id="SphereMesh_748ff"]
-radius = 0.1
-height = 0.2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8ogac"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7564p"]
 size = Vector3(0.8, 2, 0.1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_k4oly"]
+[sub_resource type="BoxMesh" id="BoxMesh_5jmap"]
 size = Vector3(0.8, 2, 0.1)
 
 [sub_resource type="Animation" id="Animation_ikut7"]
@@ -79,13 +62,28 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kv6f8"]
+resource_name = "locked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
 }
 
 [sub_resource type="Animation" id="Animation_i0xul"]
@@ -104,21 +102,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(0, 1.5708, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_kv6f8"]
-resource_name = "locked"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AudioStreamPlayer3D:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, true, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1ateo"]
 _data = {
 "RESET": SubResource("Animation_ikut7"),
@@ -127,7 +110,7 @@ _data = {
 "open": SubResource("Animation_i0xul")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_nbpw0"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ym6rh"]
 playback_mode = 2
 streams_count = 3
 stream_0/stream = ExtResource("6_oaabx")
@@ -156,79 +139,46 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.258735, 0.965948, 0, -0.965948, 0.258735, 0, 4.6507, 0)
+transform = Transform3D(0.749649, 0.342097, -0.566565, -2.11985e-08, 0.856051, 0.516892, 0.661835, -0.387487, 0.641738, 0, 4.6507, 0)
 shadow_enabled = true
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-wall_min_slide_angle = 0.0
-script = ExtResource("1_m10ss")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("BoxShape3D_lon12")
-
-[node name="Camera" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
-
-[node name="Crosshair" type="MeshInstance3D" parent="CharacterBody3D/Camera"]
-extra_cull_margin = 16384.0
-mesh = SubResource("QuadMesh_uli5m")
-script = ExtResource("3_b2r8v")
-Material = ExtResource("2_aa0t2")
-IdleInnerDotRadius = 0.012
-IdleOuterRingRadius = 0.0
-ActiveOuterRingRadius = 0.06
+[node name="Player" parent="." instance=ExtResource("1_baj43")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -13.2547, 0.383888, -14.0017)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_njnmo")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+[node name="lv1terrain" parent="." instance=ExtResource("10_15erg")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-mesh = SubResource("BoxMesh_nbbd7")
-skeleton = NodePath("../..")
+[node name="house" parent="." instance=ExtResource("11_n2so0")]
+transform = Transform3D(0.989969, 0, -0.141281, 0, 1, 0, 0.141281, 0, 0.989969, -13.0379, 0, -14.434)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("BoxShape3D_tf41q")
-
-[node name="Button" type="AnimatableBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1237, 1.18012, -3)
-script = ExtResource("2_jcqge")
-Toggle = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Button"]
-shape = SubResource("SphereShape3D_nabdp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Button"]
-mesh = SubResource("SphereMesh_748ff")
-
-[node name="Door" type="AnimatableBody3D" parent="." node_paths=PackedStringArray("AnimationPlayer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+[node name="Door" type="AnimatableBody3D" parent="house" node_paths=PackedStringArray("AnimationPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.4, 0.07)
 script = ExtResource("2_lhm1q")
 AnimationPlayer = NodePath("AnimationPlayer")
 OpenAnimation = "open"
 CloseAnimation = "close"
 LockedAnimation = "locked"
 Locked = true
-StartOpen = true
 Interruptible = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1, 0)
-shape = SubResource("BoxShape3D_8ogac")
+[node name="CollisionShape" type="CollisionShape3D" parent="house/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+shape = SubResource("BoxShape3D_7564p")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 1, 0)
-mesh = SubResource("BoxMesh_k4oly")
+[node name="MeshInstance" type="MeshInstance3D" parent="house/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+mesh = SubResource("BoxMesh_5jmap")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Door"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="house/Door"]
 libraries = {
 "": SubResource("AnimationLibrary_1ateo")
 }
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Door"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="house/Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43119, 1.01148, 0)
-stream = SubResource("AudioStreamRandomizer_nbpw0")
+stream = SubResource("AudioStreamRandomizer_ym6rh")
 
-[connection signal="Pressed" from="Button" to="Door" method="Toggle" binds= [false]]
+[node name="Doorbell" parent="house/Door" instance=ExtResource("8_2qllu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 1.6, 0)
