@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ucounq0tivpi"]
+
+[ext_resource type="PackedScene" uid="uid://dkl3tuyisefli" path="res://assets/models/rooms/the_panopticon.glb" id="1_ed8rs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ifc2q"]
+size = Vector3(40, 1, 40)
+
+[node name="the_panopticon" instance=ExtResource("1_ed8rs")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="42"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -20)
+shape = SubResource("BoxShape3D_ifc2q")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="43"]
+transform = Transform3D(0.999815, -0.00646355, 0.0181033, 0.0166446, 0.762205, -0.647121, -0.00961571, 0.647303, 0.762172, -5.00329, -7.8944, -17.37)
+spot_angle = 37.1383
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="44"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.85207, -20)
+omni_range = 42.449
+omni_attenuation = 0.392292

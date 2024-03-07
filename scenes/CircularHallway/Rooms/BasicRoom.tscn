@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxtx6b1iwhpl2"]
+
+[ext_resource type="PackedScene" uid="uid://dye78754dbt0u" path="res://assets/models/rooms/basic.glb" id="1_prc7d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rgkov"]
+size = Vector3(0.1, 4, 5.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h40am"]
+size = Vector3(0.1, 4, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vambh"]
+size = Vector3(0.1, 4, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8cqmq"]
+size = Vector3(3.7, 4, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ndux"]
+size = Vector3(2.2, 4, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktnsn"]
+size = Vector3(1.5, 4, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ui6d"]
+size = Vector3(0.7, 4, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u06x0"]
+size = Vector3(3.5, 1, 5.5)
+
+[node name="basic" instance=ExtResource("1_prc7d")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 1, -2.75)
+shape = SubResource("BoxShape3D_rgkov")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -0.45)
+shape = SubResource("BoxShape3D_h40am")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -1.895)
+shape = SubResource("BoxShape3D_vambh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 1, -2.75)
+shape = SubResource("BoxShape3D_rgkov")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1, -5.55)
+shape = SubResource("BoxShape3D_8cqmq")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0.05)
+shape = SubResource("BoxShape3D_4ndux")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, -2.05)
+shape = SubResource("BoxShape3D_ktnsn")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, 0.05)
+shape = SubResource("BoxShape3D_2ui6d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.5, -2.75)
+shape = SubResource("BoxShape3D_u06x0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.823903, 2.82118, -3.60795)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.66552, 2.82118, -1.1436)
+omni_range = 3.365
+omni_attenuation = 1.56917

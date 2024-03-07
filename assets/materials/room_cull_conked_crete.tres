@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://daada12iqtv6f"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_rot24"]
+[ext_resource type="Texture2D" uid="uid://cdre7n0lhls2s" path="res://assets/textures/conked_crete.png" id="2_tbvxv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rot24")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = ExtResource("2_tbvxv")

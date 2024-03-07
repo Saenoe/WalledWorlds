@@ -1,0 +1,41 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://b6yrwysesg34q"
+path="res://.godot/imported/interior_small.glb-37fbf9f5a0ebb86398d7e0d9a012a3b7.scn"
+
+[deps]
+
+source_file="res://assets/models/interior_small.glb"
+dest_files=["res://.godot/imported/interior_small.glb-37fbf9f5a0ebb86398d7e0d9a012a3b7.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"interior wall": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/interior_wall.material"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

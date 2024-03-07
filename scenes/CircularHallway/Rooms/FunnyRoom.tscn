@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfgxhhd1j8xxq"]
+
+[ext_resource type="PackedScene" uid="uid://ohcusvydk7w5" path="res://assets/models/funny_room.glb" id="1_rxe5y"]
+
+[node name="funny_room" instance=ExtResource("1_rxe5y")]

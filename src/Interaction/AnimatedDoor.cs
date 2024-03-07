@@ -11,9 +11,10 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 		Closing,
 	}
 
-	[Signal] public delegate void OpeningEventHandler(bool success);
+	[Signal] public delegate void TriedToOpenEventHandler();
+	[Signal] public delegate void OpeningEventHandler();
 	[Signal] public delegate void OpenedEventHandler();
-	[Signal] public delegate void ClosingEventHandler(bool success);
+	[Signal] public delegate void ClosingEventHandler();
 	[Signal] public delegate void ClosedEventHandler();
 
 	[Export] public AnimationPlayer AnimationPlayer { get; set; }
@@ -44,23 +45,31 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 
 	public void Open(bool obeyLock = true) {
 		if (!Interruptible && InMotion) return;
+		if (OpenAnimation == null || OpenAnimation == string.Empty) return;
 		
-		EmitSignal(SignalName.Opening, Locked && obeyLock);
-		if (Locked && obeyLock) {
+		if (Locked && obeyLock && State == StateEnum.Closed) {
+			if (LockedAnimation == null || LockedAnimation == string.Empty) return;
 			AnimationPlayer.Play(LockedAnimation);
+			EmitSignal(SignalName.TriedToOpen);
 			return;
 		}
 
+		EmitSignal(SignalName.Opening);
 		AnimationPlayer.Play(OpenAnimation);
 		State = StateEnum.Opening;
 	}
+	public void ForceOpen() => Open(false);
 
 	public void Close() {
 		if (!Interruptible && InMotion) return;
-		
-		EmitSignal(SignalName.Closing);
+		if (CloseAnimation == null || CloseAnimation == string.Empty) return;
 
-		AnimationPlayer.Play(CloseAnimation);
+		EmitSignal(SignalName.Closing);
+		if (CloseAnimation == OpenAnimation) {
+			AnimationPlayer.Play(OpenAnimation, -1.0, -1.0f, true);
+		} else {
+			AnimationPlayer.Play(CloseAnimation);
+		}
 		State = StateEnum.Closing;
 	}
 
@@ -69,12 +78,16 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 		else Close();
 	}
 
-	public void OnAnimationFinished(StringName animName) {
-		if (animName == OpenAnimation) {
+	public void Lock() => Locked = true;
+	public void Unlock() => Locked = false;
+	public void ToggleLock() => Locked = !Locked;
+
+	private void OnAnimationFinished(StringName animName) {
+		if (State == StateEnum.Opening) {
 			EmitSignal(SignalName.Opened);
 			State = StateEnum.Open;
 		}
-		else if (animName == CloseAnimation) {
+		else if (State == StateEnum.Closing) {
 			EmitSignal(SignalName.Closed);
 			State = StateEnum.Closed;
 		}

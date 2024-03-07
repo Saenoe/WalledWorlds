@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bcmlkq5nujh5x"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_siuef"]
+[ext_resource type="Texture2D" uid="uid://dp1mesiyidrov" path="res://assets/textures/planks1.png" id="2_ddn4y"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_siuef")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = ExtResource("2_ddn4y")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://qi231wdy68ae"]
+
+[ext_resource type="PackedScene" uid="uid://38qmtmclj2dd" path="res://assets/models/rooms/sewer.glb" id="1_5ri7x"]
+[ext_resource type="Script" path="res://src/SeamlessTeleporter.cs" id="2_4cxxe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_igeew"]
+size = Vector3(56, 1, 6.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hna5f"]
+size = Vector3(27.4, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_16q0c"]
+size = Vector3(1.4, 1, 2.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gnfe"]
+size = Vector3(1.4, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0etn"]
+size = Vector3(1, 1, 2)
+
+[node name="sewer" instance=ExtResource("1_5ri7x")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -0.9, -6.1)
+shape = SubResource("BoxShape3D_igeew")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 0.1, -6.1)
+shape = SubResource("BoxShape3D_hna5f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.35, 0.1, -6.1)
+shape = SubResource("BoxShape3D_hna5f")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.2)
+shape = SubResource("BoxShape3D_16q0c")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -0.5, -11)
+shape = SubResource("BoxShape3D_16q0c")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 12, -0.707285, -9.69798)
+shape = SubResource("BoxShape3D_6gnfe")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.707285, -2.50183)
+shape = SubResource("BoxShape3D_6gnfe")
+
+[node name="PorterEntrance" parent="." index="7" node_paths=PackedStringArray("ExitNode")]
+script = ExtResource("2_4cxxe")
+ExitNode = NodePath("../PorterExit")
+
+[node name="Area3D" type="Area3D" parent="PorterEntrance" index="0"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PorterEntrance/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, 0)
+shape = SubResource("BoxShape3D_u0etn")
+
+[connection signal="body_entered" from="PorterEntrance/Area3D" to="PorterEntrance" method="Teleport"]

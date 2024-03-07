@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk54hanhm1n1c"]
+
+[ext_resource type="PackedScene" uid="uid://b4ttgwbwv4pax" path="res://assets/models/hallway_piece.glb" id="1_o2esp"]
+[ext_resource type="Script" path="res://src/Things/CircularHallway/HallwayPiece.cs" id="2_p2kg3"]
+[ext_resource type="PackedScene" uid="uid://cd5q62txmchkv" path="res://scenes/Interaction/Doors/HallwayDoor.tscn" id="3_goxig"]
+[ext_resource type="Resource" uid="uid://c2q5bgbeb8pwy" path="res://scenes/CircularHallway/Rooms/InsideRooms.tres" id="3_jhvcx"]
+[ext_resource type="Resource" uid="uid://dxmtqrjx4b1mu" path="res://scenes/CircularHallway/Rooms/OutsideRooms.tres" id="4_58g66"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmrqy"]
+size = Vector3(0.1, 4, 1.506)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ky7jm"]
+size = Vector3(0.1, 4, 1.257)
+
+[node name="HallwayPiece" instance=ExtResource("1_o2esp")]
+script = ExtResource("2_p2kg3")
+LeftRooms = ExtResource("3_jhvcx")
+RightRooms = ExtResource("4_58g66")
+LockChance = 0.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+
+[node name="RightDoorVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="RightDoorOrigin" index="0"]
+aabb = AABB(-0.4, 0, 0, 0.8, 2, 0)
+
+[node name="RightDoor" parent="RightDoorOrigin" index="1" instance=ExtResource("3_goxig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="LeftDoorVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="LeftDoorOrigin" index="0"]
+transform = Transform3D(1, 0, 2.84217e-14, 0, 1, 0, -2.84217e-14, 0, 1, 0, 0, 0)
+aabb = AABB(-0.4, 0, 0, 0.8, 2, 0)
+
+[node name="LeftDoor" parent="LeftDoorOrigin" index="1" instance=ExtResource("3_goxig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="6"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_dmrqy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_dmrqy")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_ky7jm")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_ky7jm")

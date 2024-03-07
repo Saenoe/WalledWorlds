@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://blrggf1l6jatb"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_uggyl"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0q7ay"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uggyl")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = true
+shader_parameter/albedo_tex = SubResource("PlaceholderTexture2D_0q7ay")

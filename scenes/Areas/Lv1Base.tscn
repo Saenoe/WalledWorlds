@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgxof78ikrdo7"]
+
+[ext_resource type="PackedScene" uid="uid://ceop8ckbdeqw" path="res://scenes/Cabin.tscn" id="1_tqnu4"]
+[ext_resource type="PackedScene" uid="uid://bqhx0aayv2juj" path="res://scenes/Lv1Terrain.tscn" id="2_pf4bf"]
+
+[node name="Lv1Base" type="Node3D"]
+
+[node name="lv1terrain" parent="." instance=ExtResource("2_pf4bf")]
+
+[node name="house" parent="lv1terrain" instance=ExtResource("1_tqnu4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0379, 0, -14.434)

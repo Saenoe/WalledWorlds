@@ -1,0 +1,257 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc3wywjgiqryx"]
+
+[ext_resource type="PackedScene" uid="uid://bu2b6q7ytye6u" path="res://assets/models/hallway_entrance.glb" id="1_3ynj0"]
+[ext_resource type="PackedScene" uid="uid://b4ttgwbwv4pax" path="res://assets/models/hallway_piece.glb" id="2_kjwvq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sh021"]
+size = Vector3(0.1, 4, 1.506)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1r8n"]
+size = Vector3(0.1, 4, 1.257)
+
+[node name="hallway_entrance" instance=ExtResource("1_3ynj0")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="hallway_piece" parent="." index="6" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.946085, 0, 0.323917, 0, 1, 0, -0.323917, 0, 0.946085, -1.165, 0, -6.981)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece" index="6"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece2" parent="." index="7" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.986286, 0, 0.165048, 0, 1, 0, -0.165048, 0, 0.986286, -0.293, 0, -3.539)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece2" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece2/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece2/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece2/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece2/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece2/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece2" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece3" parent="." index="8" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.879649, 0, 0.475624, 0, 1, 0, -0.475624, 0, 0.879649, -2.591, 0, -10.233)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece3" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece3/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece3/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece3/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece3/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece3/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece3" index="6"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece4" parent="." index="9" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.789084, 0, 0.614285, 0, 1, 0, -0.614285, 0, 0.789084, -4.533, 0, -13.206)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece4" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece4/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece4/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece4/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece4/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece4/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece4" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece5" parent="." index="10" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.676876, 0, 0.736097, 0, 1, 0, -0.736097, 0, 0.676876, -6.938, 0, -15.818)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece5" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece5/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece5/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece5/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece5/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece5/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece5" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece6" parent="." index="11" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.547563, 0, 0.836764, 0, 1, 0, -0.836764, 0, 0.547563, -9.741, 0, -17.999)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece6" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece6/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece6/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece6/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece6/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece6/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece6" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="hallway_piece7" parent="." index="12" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.401948, 0, 0.915662, 0, 1, 0, -0.915662, 0, 0.401948, -12.864, 0, -19.689)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece7" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece7/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece7/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece7/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece7/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece7/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece7" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
+shadow_enabled = true
+omni_range = 0.5
+omni_attenuation = 0.1

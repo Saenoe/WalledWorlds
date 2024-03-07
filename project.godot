@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="AcerolaJamEntry"
-run/main_scene="res://scenes/TestScene.tscn"
+run/main_scene="res://scenes/Areas/Lv1.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+
+[autoload]
+
+InternalMonologue="*res://src/UI/InternalMonologue.cs"
 
 [display]
 
@@ -22,6 +26,15 @@ window/vsync/vsync_mode=0
 [dotnet]
 
 project/assembly_name="AcerolaJamEntry"
+
+[importer_defaults]
+
+animation_library={
+"gltf/embedded_image_handling": 0
+}
+scene={
+"gltf/embedded_image_handling": 0
+}
 
 [input]
 
@@ -50,6 +63,17 @@ Interact={
 "events": [null, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(188, 10),"global_position":Vector2(192, 51),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+Zoom={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(74, 7),"global_position":Vector2(78, 48),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+3d_physics/layer_1="static geometry"
+3d_physics/layer_2="player"
+3d_physics/layer_3="interaction"
 
 [rendering]
 

@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://b4mcuhxckbrby"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_ek3wo"]
+
+[sub_resource type="Gradient" id="Gradient_17jh4"]
+colors = PackedColorArray(0.973535, 0.973535, 0.973535, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oh83h"]
+noise_type = 0
+frequency = 0.2682
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ephnj"]
+width = 128
+height = 128
+color_ramp = SubResource("Gradient_17jh4")
+noise = SubResource("FastNoiseLite_oh83h")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ek3wo")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = SubResource("NoiseTexture2D_ephnj")

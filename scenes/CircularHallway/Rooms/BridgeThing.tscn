@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bifpk08art3ps"]
+
+[ext_resource type="PackedScene" uid="uid://kvkxendugi4e" path="res://assets/models/rooms/bridge_thing.glb" id="1_x8k6u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_blsvi"]
+size = Vector3(2, 1, 28)
+
+[node name="bridge_thing" instance=ExtResource("1_x8k6u")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -14)
+shape = SubResource("BoxShape3D_blsvi")

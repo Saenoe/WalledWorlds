@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cc3sosr5bm2ux"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_iubhv"]
+[ext_resource type="Texture2D" uid="uid://do23aqad031to" path="res://assets/textures/pooltiles.png" id="2_85tph"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_iubhv")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = ExtResource("2_85tph")

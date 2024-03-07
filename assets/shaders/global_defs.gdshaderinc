@@ -1,0 +1,1 @@
+#define AMBIENT_COLOR vec3(0.2);

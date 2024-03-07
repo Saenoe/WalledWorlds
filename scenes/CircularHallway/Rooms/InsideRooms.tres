@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SceneRandomizer" load_steps=5 format=3 uid="uid://c2q5bgbeb8pwy"]
+
+[ext_resource type="Script" path="res://src/Things/CircularHallway/SceneRandomizer.cs" id="1_dmfiq"]
+[ext_resource type="PackedScene" uid="uid://dxtx6b1iwhpl2" path="res://scenes/CircularHallway/Rooms/BasicRoom.tscn" id="1_hm1ll"]
+[ext_resource type="PackedScene" uid="uid://ucounq0tivpi" path="res://scenes/CircularHallway/Rooms/ThePanopticon.tscn" id="3_0hr7x"]
+[ext_resource type="PackedScene" uid="uid://cwgpkamw2dita" path="res://scenes/CircularHallway/Rooms/Courtyard.tscn" id="6_yb3hp"]
+
+[resource]
+script = ExtResource("1_dmfiq")
+Scenes = Array[PackedScene]([ExtResource("1_hm1ll"), ExtResource("6_yb3hp"), ExtResource("3_0hr7x")])
+LimitedPool = false

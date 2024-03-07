@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://duowxyxmlvlt"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_blend_terrain.gdshader" id="1_ftau2"]
+[ext_resource type="Texture2D" uid="uid://cxha1jud0rpia" path="res://assets/textures/grass0.png" id="2_ff68a"]
+[ext_resource type="Texture2D" uid="uid://b6tvbvayow1o2" path="res://assets/textures/dirt0.png" id="3_2jrf1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ftau2")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/blend_tex0_tile = 1.0
+shader_parameter/blend_tex1_tile = 1.0
+shader_parameter/blend_tex0 = ExtResource("2_ff68a")
+shader_parameter/blend_tex1 = ExtResource("3_2jrf1")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SceneRandomizer" load_steps=5 format=3 uid="uid://dxmtqrjx4b1mu"]
+
+[ext_resource type="PackedScene" uid="uid://dxtx6b1iwhpl2" path="res://scenes/CircularHallway/Rooms/BasicRoom.tscn" id="1_lopw4"]
+[ext_resource type="PackedScene" uid="uid://bifpk08art3ps" path="res://scenes/CircularHallway/Rooms/BridgeThing.tscn" id="2_enxhd"]
+[ext_resource type="PackedScene" uid="uid://qi231wdy68ae" path="res://scenes/CircularHallway/Rooms/Sewer.tscn" id="3_vaf4e"]
+[ext_resource type="Script" path="res://src/Things/CircularHallway/SceneRandomizer.cs" id="3_wmjg4"]
+
+[resource]
+script = ExtResource("3_wmjg4")
+Scenes = Array[PackedScene]([ExtResource("1_lopw4"), ExtResource("2_enxhd"), ExtResource("3_vaf4e")])
+LimitedPool = false

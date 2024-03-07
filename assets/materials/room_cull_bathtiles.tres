@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c1wcjnflc53sf"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_xkg3g"]
+[ext_resource type="Texture2D" uid="uid://cmd471ye7yhnj" path="res://assets/textures/bathtiles.png" id="2_f3r1g"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_xkg3g")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = ExtResource("2_f3r1g")

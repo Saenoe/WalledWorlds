@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwyox6047pfn0"]
+
+[ext_resource type="Script" path="res://src/Things/CircularHallway/CircularHallway.cs" id="1_qfpj8"]
+[ext_resource type="PackedScene" uid="uid://bk54hanhm1n1c" path="res://scenes/CircularHallway/HallwayPiece.tscn" id="2_o1ho6"]
+
+[node name="CircularHallway" type="Node3D"]
+script = ExtResource("1_qfpj8")
+HallwayScene = ExtResource("2_o1ho6")
+PieceAngle = 9.474
+Radius = 21.5

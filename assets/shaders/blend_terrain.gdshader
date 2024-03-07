@@ -1,11 +1,10 @@
 shader_type spatial;
+render_mode unshaded;
 
 uniform sampler2D blend_tex0 : source_color, filter_nearest_mipmap_anisotropic;
 uniform float blend_tex0_tile = 1.0;
 uniform sampler2D blend_tex1 : source_color, filter_nearest_mipmap_anisotropic;
 uniform float blend_tex1_tile = 1.0;
-
-uniform float blend_resolution = 8.0;
 
 
 
@@ -14,7 +13,7 @@ void vertex() {
 }
 
 void fragment() {
-	float blend_value = floor(COLOR.r * blend_resolution + 0.01) / blend_resolution;
+	float blend_value = COLOR.r;
 	
 	vec4 blend_sample0 = texture(blend_tex0, UV * blend_tex0_tile);
 	vec4 blend_sample1 = texture(blend_tex1, UV * blend_tex1_tile);
