@@ -7,8 +7,7 @@ namespace Aberration;
 
 public partial class CircularHallway : Node3D {
 
-	[Export]
-	public PackedScene HallwayScene { get; set; }
+	private PackedScene _pieceScene;
 
 	private float _pieceAngle = 10.0f;
 	private float _radius = 10.0f;
@@ -19,7 +18,7 @@ public partial class CircularHallway : Node3D {
 	private float _currentAngle = 0.0f;
 	private bool _initialized = false;
 
-	private readonly int _cullDistance = 3;
+	private readonly int _cullDistance = 8;
 
 	private readonly Dictionary<int, HallwayPiece> _pieces = new();
 	private readonly List<HallwayPiece> _activePieces = new();
@@ -31,6 +30,7 @@ public partial class CircularHallway : Node3D {
 	private int _roomPieceId = 0; 
 
 	public override void _Ready() {
+		_pieceScene = ResourceLoader.Load<PackedScene>("res://scenes/CircularHallway/HallwayPiece.tscn");
 		_circlePieceCount = (int)(Math.Round(360.0f / PieceAngle) + 0.5f);
 	}
 
@@ -61,7 +61,7 @@ public partial class CircularHallway : Node3D {
 		float angle = (id % _circlePieceCount) * Mathf.DegToRad(_pieceAngle);
 
 		if (!_pieces.ContainsKey(id)) {
-			HallwayPiece newPiece = HallwayScene.Instantiate<HallwayPiece>();
+			HallwayPiece newPiece = _pieceScene.Instantiate<HallwayPiece>();
 			Transform3D t = Transform3D.Identity.Translated(Vector3.Right * Radius).Rotated(Vector3.Up, angle);
 			newPiece.Transform = t;
 			newPiece.Id = id;

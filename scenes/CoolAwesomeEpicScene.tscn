@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4meejge3glan"]
+
+[ext_resource type="Script" path="res://src/Autoload/GameManager.cs" id="1_hplie"]
+
+[node name="CoolAwesomeEpicScene" type="Node"]
+script = ExtResource("1_hplie")

@@ -45,7 +45,6 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 
 	public void Open(bool obeyLock = true) {
 		if (!Interruptible && InMotion) return;
-		if (OpenAnimation == null || OpenAnimation == string.Empty) return;
 		
 		if (Locked && obeyLock && State == StateEnum.Closed) {
 			if (LockedAnimation == null || LockedAnimation == string.Empty) return;
@@ -53,6 +52,8 @@ public partial class AnimatedDoor : AnimatableBody3D, IInteractible {
 			EmitSignal(SignalName.TriedToOpen);
 			return;
 		}
+		
+		if (OpenAnimation == null || OpenAnimation == string.Empty) return;
 
 		EmitSignal(SignalName.Opening);
 		AnimationPlayer.Play(OpenAnimation);

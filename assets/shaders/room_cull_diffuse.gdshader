@@ -13,7 +13,7 @@ void fragment() {
 	
 	vec4 sample = texture(albedo_tex, UV);
 
-	if ((enable_cull && !point_in_window(CAMERA_POSITION_WORLD, frag_dir)) || sample.a < ALPHA_SCISSOR_THRESHOLD) discard;
+	if ((enable_cull && !point_in_window(CAMERA_POSITION_WORLD, frag_dir)) || sample.a < 0.5) discard;
 	
 	
 	ALBEDO = sample.rgb * COLOR.rgb;

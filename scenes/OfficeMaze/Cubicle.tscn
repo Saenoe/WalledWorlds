@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj17anl7cvj5r"]
+
+[ext_resource type="PackedScene" uid="uid://chn5vll3erhr2" path="res://assets/models/cubicle.glb" id="1_oimcr"]
+[ext_resource type="Script" path="res://src/Things/OfficeMaze/Cubicle.cs" id="2_h78qm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p6tad"]
+size = Vector3(0.03, 1.3, 1.98)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxgdn"]
+size = Vector3(0.03, 1.3, 1.92)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vspph"]
+size = Vector3(0.03, 1.3, 0.73)
+
+[node name="Cubicle" instance=ExtResource("1_oimcr")]
+script = ExtResource("2_h78qm")
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="." index="0"]
+aabb = AABB(-1, 0, -1, 2, 1.5, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cubicle" index="0"]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cubicle/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.975, 0.65, 0)
+shape = SubResource("BoxShape3D_p6tad")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cubicle/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.975243, 0.65, 0)
+shape = SubResource("BoxShape3D_p6tad")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Cubicle/StaticBody3D" index="2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.65, -0.975)
+shape = SubResource("BoxShape3D_mxgdn")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Cubicle/StaticBody3D" index="3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.595, 0.65, 0.975)
+shape = SubResource("BoxShape3D_vspph")
+
+[connection signal="screen_exited" from="OnScreenNotifier" to="." method="Randomize"]

@@ -8,4 +8,3 @@
 [node name="lv1terrain" parent="." instance=ExtResource("2_pf4bf")]
 
 [node name="house" parent="lv1terrain" instance=ExtResource("1_tqnu4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.0379, 0, -14.434)

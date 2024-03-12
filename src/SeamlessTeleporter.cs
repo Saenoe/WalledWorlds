@@ -9,6 +9,7 @@ public partial class SeamlessTeleporter : Node3D {
 
 	[Export] public Node3D ExitNode { get; set; }
 	[Export] public float PositionScale { get; set; } = 1.0f;
+	[Export] public bool AdjustClipPlanes { get; set; } = true;
 
 
 	public void Teleport(Node3D node) {
@@ -19,7 +20,12 @@ public partial class SeamlessTeleporter : Node3D {
 
 		node.GlobalTransform = t;
 
-		if (node is Player player) player.WalkSpeed *= PositionScale;
+		if (node is Player player) {
+			player.Camera.Near *= PositionScale;
+			player.Camera.Far *= PositionScale;
+			player.WalkSpeed *= PositionScale;
+		}
+
 
 		EmitSignal(SignalName.Teleported, node);
 	}

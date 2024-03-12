@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd5q62txmchkv"]
+[gd_scene load_steps=10 format=3 uid="uid://cd5q62txmchkv"]
 
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="1_a6t7y"]
+[ext_resource type="PackedScene" uid="uid://mkyv3m2w7xg" path="res://assets/models/hallway_door.glb" id="2_eb2ir"]
+[ext_resource type="Material" uid="uid://0ga3us8mlvvs" path="res://assets/materials/vertex_color_noise.tres" id="2_vbcwo"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ytkxw"]
+material = ExtResource("2_vbcwo")
 size = Vector3(0.8, 2, 0.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nr8ir"]
@@ -72,9 +75,14 @@ AnimationPlayer = NodePath("AnimationPlayer")
 OpenAnimation = "open"
 CloseAnimation = "open"
 LockedAnimation = "locked"
+Locked = true
+
+[node name="hallway_door" parent="Door" instance=ExtResource("2_eb2ir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+visible = false
 mesh = SubResource("BoxMesh_ytkxw")
 skeleton = NodePath("../..")
 

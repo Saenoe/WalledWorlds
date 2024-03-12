@@ -39,6 +39,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/room_cull_pooltiles.tres"
 },
+"pool water": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/pool_water.tres"
+},
 "rust": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/room_cull_rust.tres"

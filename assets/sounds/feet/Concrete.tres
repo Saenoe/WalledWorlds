@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://chwhe7kjfltc1"]
+
+[ext_resource type="AudioStream" uid="uid://cda58oh38agoo" path="res://assets/sounds/feet/concrete0.ogg" id="1_6cj8m"]
+[ext_resource type="AudioStream" uid="uid://bn8gwpvm3hsil" path="res://assets/sounds/feet/concrete1.ogg" id="2_nmuur"]
+[ext_resource type="AudioStream" uid="uid://djgco7ufieh8m" path="res://assets/sounds/feet/concrete2.ogg" id="3_qqaoj"]
+[ext_resource type="AudioStream" uid="uid://byvq6dfovo0xq" path="res://assets/sounds/feet/concrete3.ogg" id="4_h7oxk"]
+[ext_resource type="AudioStream" uid="uid://hul5w67w8qc4" path="res://assets/sounds/feet/concrete4.ogg" id="5_ca5j0"]
+[ext_resource type="AudioStream" uid="uid://caj1thw5w272i" path="res://assets/sounds/feet/concrete5.ogg" id="6_d8di0"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_6cj8m")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_nmuur")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_qqaoj")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_h7oxk")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_ca5j0")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_d8di0")
+stream_5/weight = 1.0

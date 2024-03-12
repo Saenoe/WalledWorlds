@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://21nm66fnsmxm"]
+
+[ext_resource type="Script" path="res://src/UI/MonologueLabel.cs" id="1_v53bx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vej2y"]
+font_size = 46
+outline_color = Color(0, 0, 0, 1)
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DialogueLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.865741
+anchor_right = 0.95
+anchor_bottom = 0.865741
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_vej2y")
+horizontal_alignment = 1
+script = ExtResource("1_v53bx")
+metadata/_edit_use_anchors_ = true

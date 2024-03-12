@@ -18,7 +18,7 @@ nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
-meshes/generate_lods=true
+meshes/generate_lods=false
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
@@ -42,6 +42,10 @@ _subresources={
 "frabric white": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/room_cull_fabric0.tres"
+},
+"funny ropm": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/room_cull_vertex_color_noise.tres"
 },
 "funny wood": {
 "use_external/enabled": true,

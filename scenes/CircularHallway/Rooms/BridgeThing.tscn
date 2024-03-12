@@ -1,14 +1,316 @@
-[gd_scene load_steps=3 format=3 uid="uid://bifpk08art3ps"]
+[gd_scene load_steps=14 format=3 uid="uid://bifpk08art3ps"]
 
 [ext_resource type="PackedScene" uid="uid://kvkxendugi4e" path="res://assets/models/rooms/bridge_thing.glb" id="1_x8k6u"]
+[ext_resource type="Script" path="res://src/Things/BridgeThing.cs" id="2_e7hgq"]
+[ext_resource type="AudioStream" uid="uid://chwgfiopplpio" path="res://assets/sounds/window_smash.ogg" id="3_e4mog"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxwoo"]
+size = Vector3(7, 5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x6nd6"]
+size = Vector3(1, 100, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_blsvi"]
-size = Vector3(2, 1, 28)
+size = Vector3(3, 1, 28)
 
-[node name="bridge_thing" instance=ExtResource("1_x8k6u")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_weke5"]
+size = Vector3(1, 4, 28)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
+[sub_resource type="Animation" id="Animation_4xnkb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bridge:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bridge thing BROKEY entrance:rotation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bridge thing BROKEY entrance:rotation:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bridge thing BROKEY entrance:rotation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bridge thing BROKEY exit:rotation:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bridge thing BROKEY exit:rotation:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.14159, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("bridge thing BROKEY exit:rotation:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Funnel:process_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[sub_resource type="Animation" id="Animation_8jv2e"]
+resource_name = "break"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bridge:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bridge thing BROKEY entrance:rotation:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.0472, 0, 1.04811, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bridge thing BROKEY entrance:rotation:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bridge thing BROKEY entrance:rotation:z")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bridge thing BROKEY exit:rotation:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.048, 0, 1.0538, 0.25, 0),
+"times": PackedFloat32Array(0, 1.6)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bridge thing BROKEY exit:rotation:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3.14159, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("bridge thing BROKEY exit:rotation:z")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Funnel:process_mode")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iry5x"]
+_data = {
+"RESET": SubResource("Animation_4xnkb"),
+"break": SubResource("Animation_8jv2e")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wknye"]
+size = Vector3(3, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cjknj"]
+size = Vector3(2828.53, 1, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxtvv"]
+size = Vector3(10, 5, 10)
+
+[node name="bridge_thing2" instance=ExtResource("1_x8k6u")]
+script = ExtResource("2_e7hgq")
+
+[node name="Funnel" type="StaticBody3D" parent="." index="0"]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.177992, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Funnel" index="0"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, -2)
+shape = SubResource("BoxShape3D_sxwoo")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Funnel" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 2)
+shape = SubResource("BoxShape3D_sxwoo")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Funnel" index="2"]
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 2, 0, 0)
+shape = SubResource("BoxShape3D_sxwoo")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Funnel" index="3"]
+transform = Transform3D(-4.37114e-08, -0.5, -0.866025, 0, 0.866025, -0.5, 1, -2.18557e-08, -3.78552e-08, -2, 0, 0)
+shape = SubResource("BoxShape3D_sxwoo")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Funnel" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52.4531, 0.799999)
+shape = SubResource("BoxShape3D_x6nd6")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Funnel" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -52.4531, -0.800003)
+shape = SubResource("BoxShape3D_x6nd6")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Funnel" index="6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.799999, -52.4531, 0)
+shape = SubResource("BoxShape3D_x6nd6")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Funnel" index="7"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.800003, -52.4531, 0)
+shape = SubResource("BoxShape3D_x6nd6")
+
+[node name="Bridge" type="StaticBody3D" parent="." index="5"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0, -28)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bridge" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -14)
 shape = SubResource("BoxShape3D_blsvi")
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Bridge" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -14)
+shape = SubResource("BoxShape3D_weke5")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Bridge" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -14)
+shape = SubResource("BoxShape3D_weke5")
+
+[node name="bridge thing BROKEY exit" parent="." index="6"]
+transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, -28)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+libraries = {
+"": SubResource("AnimationLibrary_iry5x")
+}
+
+[node name="BreakTrigger" type="Area3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BreakTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_wknye")
+
+[node name="Road" type="StaticBody3D" parent="." index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_cjknj")
+metadata/FootstepType = 2
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8308, -397.88, -0.0685458)
+stream = ExtResource("3_e4mog")
+pitch_scale = 1.22
+attenuation_filter_cutoff_hz = 10000.0
+
+[node name="LevelExit" type="Area3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelExit" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("BoxShape3D_gxtvv")

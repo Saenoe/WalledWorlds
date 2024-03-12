@@ -18,10 +18,6 @@ LeftRooms = ExtResource("3_jhvcx")
 RightRooms = ExtResource("4_58g66")
 LockChance = 0.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-
 [node name="RightDoorVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="RightDoorOrigin" index="0"]
 aabb = AABB(-0.4, 0, 0, 0.8, 2, 0)
 
@@ -35,24 +31,30 @@ aabb = AABB(-0.4, 0, 0, 0.8, 2, 0)
 [node name="LeftDoor" parent="LeftDoorOrigin" index="1" instance=ExtResource("3_goxig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="6"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="5"]
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="0"]
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
 shape = SubResource("BoxShape3D_dmrqy")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
 shape = SubResource("BoxShape3D_dmrqy")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
 shape = SubResource("BoxShape3D_ky7jm")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_ky7jm")

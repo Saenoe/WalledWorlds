@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://cdds6yr7uu7eg"]
+
+[ext_resource type="Shader" path="res://assets/shaders/water.gdshader" id="1_v0sni"]
+[ext_resource type="Texture2D" uid="uid://dlffyhi1f3k8e" path="res://assets/textures/water.png" id="2_imo6i"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v0sni")
+shader_parameter/color = Color(0.454902, 0.572549, 0.721569, 1)
+shader_parameter/scroll = Vector2(0.124, 0.047)
+shader_parameter/mask_tex = ExtResource("2_imo6i")

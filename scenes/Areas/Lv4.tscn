@@ -1,0 +1,256 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvxaj7evymjq"]
+
+[ext_resource type="PackedScene" uid="uid://cwyija3dd3k7e" path="res://scenes/VoidHouse.tscn" id="1_ftww2"]
+[ext_resource type="Script" path="res://src/Things/EndScene.cs" id="1_w5c43"]
+[ext_resource type="PackedScene" uid="uid://dgxof78ikrdo7" path="res://scenes/Areas/Lv1Base.tscn" id="2_4v4c8"]
+[ext_resource type="Texture2D" uid="uid://etpwvb7abgvy" path="res://assets/textures/sky.png" id="3_biomk"]
+[ext_resource type="Shader" path="res://assets/shaders/monochrome.gdshader" id="4_4w4kf"]
+[ext_resource type="AudioStream" uid="uid://brnckasvwgjb" path="res://assets/sounds/knock/knock0.ogg" id="5_iooej"]
+[ext_resource type="Script" path="res://src/Things/Switcheroo.cs" id="5_wyfae"]
+[ext_resource type="AudioStream" uid="uid://d0p4oli0ii4kj" path="res://assets/sounds/knock/knock1.ogg" id="6_7qmts"]
+[ext_resource type="AudioStream" uid="uid://drx4e0pltfdtw" path="res://assets/sounds/knock/knock2.ogg" id="7_4doh2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_10hd5"]
+panorama = ExtResource("3_biomk")
+filter = false
+
+[sub_resource type="Sky" id="Sky_7ipj8"]
+sky_material = SubResource("PanoramaSkyMaterial_10hd5")
+radiance_size = 0
+
+[sub_resource type="Environment" id="Environment_cbvso"]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = SubResource("Sky_7ipj8")
+ssao_enabled = true
+ssao_radius = 0.18
+fog_sun_scatter = 0.32
+fog_density = 0.0017
+adjustment_enabled = true
+adjustment_contrast = 1.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xx7q3"]
+size = Vector3(6.392, 1, 5.243)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti6ad"]
+size = Vector3(1.48999, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1i3fb"]
+size = Vector3(0.2, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r17od"]
+size = Vector3(6.79492, 3.7724, 3.89569)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0oeh5"]
+render_priority = 0
+shader = ExtResource("4_4w4kf")
+shader_parameter/fade_distance = 0.0
+shader_parameter/fade_smoothing = 0.4
+shader_parameter/ignore_sky = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_6mdok"]
+material = SubResource("ShaderMaterial_0oeh5")
+flip_faces = true
+
+[sub_resource type="Animation" id="Animation_sooan"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MonochromeQuad:mesh:material:shader_parameter/fade_distance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D:bus")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonochromeQuad:mesh:material:shader_parameter/ignore_sky")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jljkf"]
+resource_name = "transition"
+length = 4.5825
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Switcheroo")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Switch"
+}]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_iooej")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_7qmts")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_4doh2")
+}],
+"times": PackedFloat32Array(0, 1.3, 2.55)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MonochromeQuad:mesh:material:shader_parameter/fade_distance")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.55, 4.15),
+"transitions": PackedFloat32Array(0, 0, 1, 1),
+"update": 0,
+"values": [100.0, 0.0, 2.0, 200.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D:bus")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"Master", &"SmallReverb", &"BigReverb"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MonochromeQuad:mesh:material:shader_parameter/ignore_sky")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.55),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WorldEnvironment:environment:background_energy_multiplier")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.55, 4.15),
+"transitions": PackedFloat32Array(0, 0.217638, 1),
+"update": 0,
+"values": [0.0, 16.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hmgu1"]
+_data = {
+"RESET": SubResource("Animation_sooan"),
+"transition": SubResource("Animation_jljkf")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_w5c43")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cbvso")
+
+[node name="LevelEntrance" type="Node3D" parent="."]
+
+[node name="ColorZone" type="Node3D" parent="."]
+
+[node name="Lv1Base" parent="ColorZone" instance=ExtResource("2_4v4c8")]
+
+[node name="Collision" type="StaticBody3D" parent="ColorZone/Lv1Base/lv1terrain/house" index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.84217e-14, 0, 1.42109e-14, 1, 0, -0.1, -1.13)
+shape = SubResource("BoxShape3D_xx7q3")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(0.999993, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.303635, 1.49326)
+shape = SubResource("BoxShape3D_ti6ad")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.0516e-12, 0, 5.25802e-13, 1, -2.89701, 1.37006, 1.19673)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.0516e-12, 0, 5.25802e-13, 1, 2.897, 1.37, 1.197)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, -1.00719, 1.37006, 1.19673)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, 1.007, 1.37, 1.197)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="ColorZone/Lv1Base/lv1terrain/house/Collision"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 2.28099, -1.80433)
+shape = SubResource("BoxShape3D_r17od")
+
+[node name="Void" type="Node3D" parent="."]
+
+[node name="VoidHouse" parent="Void" instance=ExtResource("1_ftww2")]
+
+[node name="MonochromeQuad" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.76837e-07, 0.5, 4.68987)
+cast_shadow = 0
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_6mdok")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hmgu1")
+}
+
+[node name="Switcheroo" type="Node" parent="." node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("5_wyfae")
+Node1 = NodePath("../Void")
+Node2 = NodePath("../ColorZone")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0657699, 1.45824, 0)
+
+[editable path="ColorZone/Lv1Base"]
+[editable path="Void/VoidHouse"]

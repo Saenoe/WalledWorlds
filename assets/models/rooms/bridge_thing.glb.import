@@ -31,6 +31,18 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
+"frabric white": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/room_cull_fabric0.tres"
+},
+"funny wood": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/room_cull_planks1.tres"
+},
+"hallway wall": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/room_cull_hallway_wall.tres"
+},
 "interior wall": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/bridge_thing.tres"
@@ -38,6 +50,10 @@ _subresources={
 "vertex color noise": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/room_cull_vertex_color_noise.tres"
+},
+"wood floor": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/room_cull_woodfloor0.tres"
 }
 }
 }

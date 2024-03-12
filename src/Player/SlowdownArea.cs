@@ -31,7 +31,6 @@ public partial class SlowdownArea : Area3D {
 
 
 		_playerInside.WalkSpeed = InterpolateSpeed();
-		GD.Print(_playerInside.WalkSpeed);
 	}
 
 	public void OnBodyEnter(Node3D node) {

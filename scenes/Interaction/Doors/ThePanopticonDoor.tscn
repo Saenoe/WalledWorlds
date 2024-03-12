@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://crcn0t0ri2hct"]
+
+[ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="1_h2jsn"]
+[ext_resource type="PackedScene" uid="uid://ch87fragbi8o2" path="res://assets/models/rooms/the_panopticon_door.glb" id="2_ka1jw"]
+[ext_resource type="AudioStream" uid="uid://cwnf0dxmmstjs" path="res://assets/sounds/locked_metal_door.ogg" id="3_tehbh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kqvt8"]
+size = Vector3(1, 2, 0.1)
+
+[sub_resource type="Animation" id="Animation_yjgs0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pqlnc"]
+resource_name = "locked"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.032149, 0), Vector3(0, 0.0842121, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7qsl"]
+_data = {
+"RESET": SubResource("Animation_yjgs0"),
+"locked": SubResource("Animation_pqlnc")
+}
+
+[node name="ThePanopticonDoor" type="Node3D"]
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." node_paths=PackedStringArray("AnimationPlayer")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0, 0)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_h2jsn")
+AnimationPlayer = NodePath("AnimationPlayer")
+LockedAnimation = "locked"
+Locked = true
+
+[node name="the_panopticon_door" parent="AnimatableBody3D" instance=ExtResource("2_ka1jw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.450212, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.450212, 1, -0.005)
+shape = SubResource("BoxShape3D_kqvt8")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatableBody3D"]
+libraries = {
+"": SubResource("AnimationLibrary_g7qsl")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.10618, 0)
+stream = ExtResource("3_tehbh")
+bus = &"PanopticonReverb"
+area_mask = 0

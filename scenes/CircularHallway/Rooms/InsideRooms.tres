@@ -7,5 +7,5 @@
 
 [resource]
 script = ExtResource("1_dmfiq")
-Scenes = Array[PackedScene]([ExtResource("1_hm1ll"), ExtResource("6_yb3hp"), ExtResource("3_0hr7x")])
-LimitedPool = false
+LimitedPool = Array[PackedScene]([ExtResource("6_yb3hp"), ExtResource("3_0hr7x")])
+BasicPool = Array[PackedScene]([ExtResource("1_hm1ll")])

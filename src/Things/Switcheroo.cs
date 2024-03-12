@@ -51,7 +51,7 @@ public partial class Switcheroo : Node {
 				TrySetVisibility(Node1, true);
 				Node1.ProcessMode = ProcessModeEnum.Inherit;
 				TrySetVisibility(Node2, false);	
-				Node2.ProcessMode = ProcessModeEnum.Disabled;
+				Node2.CallDeferred("set_process_mode", (int)ProcessModeEnum.Disabled);
 			}; break;
 		}		
 	}	

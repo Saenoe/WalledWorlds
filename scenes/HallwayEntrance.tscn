@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc3wywjgiqryx"]
+[gd_scene load_steps=21 format=3 uid="uid://dc3wywjgiqryx"]
 
 [ext_resource type="PackedScene" uid="uid://bu2b6q7ytye6u" path="res://assets/models/hallway_entrance.glb" id="1_3ynj0"]
+[ext_resource type="PackedScene" uid="uid://cd5q62txmchkv" path="res://scenes/Interaction/Doors/HallwayDoor.tscn" id="2_a77am"]
 [ext_resource type="PackedScene" uid="uid://b4ttgwbwv4pax" path="res://assets/models/hallway_piece.glb" id="2_kjwvq"]
+[ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="4_b677v"]
+[ext_resource type="PackedScene" uid="uid://mkyv3m2w7xg" path="res://assets/models/hallway_door.glb" id="5_2e3eg"]
+[ext_resource type="PackedScene" uid="uid://cqae73d71dbwv" path="res://assets/models/the fork.glb" id="6_b4pt5"]
+[ext_resource type="AudioStream" uid="uid://deuj6pyk53pxe" path="res://assets/sounds/door_slam.ogg" id="7_ah3hn"]
+[ext_resource type="PackedScene" uid="uid://dye78754dbt0u" path="res://assets/models/rooms/basic.glb" id="7_ndofv"]
+[ext_resource type="AudioStream" uid="uid://dcjigsup55psc" path="res://assets/sounds/door_creek.ogg" id="8_hsqgb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh021"]
 size = Vector3(0.1, 4, 1.506)
@@ -9,13 +16,192 @@ size = Vector3(0.1, 4, 1.506)
 [sub_resource type="BoxShape3D" id="BoxShape3D_m1r8n"]
 size = Vector3(0.1, 4, 1.257)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_to7o4"]
+size = Vector3(2, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2yaa"]
+size = Vector3(1.25, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nr8ir"]
+size = Vector3(0.8, 2, 0.1)
+
+[sub_resource type="Animation" id="Animation_e28xs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.67552, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../the fork:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0084095, 0, -1.19739)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../the fork:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.10268, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SlamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_3c4lp"]
+resource_name = "close"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.15, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -1.67552, 0), Vector3(0, 0.0349066, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../the fork:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.506875, -2.38419e-07, -1.49645), Vector3(0, 0, 0), Vector3(0.141373, 0, -0.016964), Vector3(0.183691, -1.19209e-07, -0.262477), Vector3(0.168392, -2.38419e-07, -0.769045)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../the fork:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.226893, 0), Vector3(0, 0.76346, 0), Vector3(0, 1.12699, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../SlamPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.275),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CreakPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 4.4463,
+"start_offset": 0.6527,
+"stream": ExtResource("8_hsqgb")
+}],
+"times": PackedFloat32Array(0.15)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_wxa2p"]
+resource_name = "locked"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0314159, 0), Vector3(0, -0.0506145, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rcbbs"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.67552, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tyq4m"]
+_data = {
+"RESET": SubResource("Animation_e28xs"),
+"close": SubResource("Animation_3c4lp"),
+"locked": SubResource("Animation_wxa2p"),
+"open": SubResource("Animation_rcbbs")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mq6so"]
+size = Vector3(1, 1, 3)
+
 [node name="hallway_entrance" instance=ExtResource("1_3ynj0")]
+
+[node name="HallwayDoor" parent="RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
-polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+polygon = PackedVector2Array(-1.5, -3, -1.5, 1.657, 1.5, 1.906, 1.5, -3)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -33,14 +219,38 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 1, 2.3)
+shape = SubResource("BoxShape3D_to7o4")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, 1, 2.3)
+shape = SubResource("BoxShape3D_to7o4")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 2.675)
+shape = SubResource("BoxShape3D_v2yaa")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="StaticBody3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
 [node name="hallway_piece" parent="." index="6" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.946085, 0, 0.323917, 0, 1, 0, -0.323917, 0, 0.946085, -1.165, 0, -6.981)
+
+[node name="HallwayDoor" parent="hallway_piece/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -58,20 +268,26 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece" index="6"]
-transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
 [node name="hallway_piece2" parent="." index="7" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.986286, 0, 0.165048, 0, 1, 0, -0.165048, 0, 0.986286, -0.293, 0, -3.539)
+
+[node name="HallwayDoor" parent="hallway_piece2/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece2/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece2" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece2/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece2/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -89,20 +305,70 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece2" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece2/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
 [node name="hallway_piece3" parent="." index="8" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.879649, 0, 0.475624, 0, 1, 0, -0.475624, 0, 0.879649, -2.591, 0, -10.233)
+
+[node name="CoolSpecialDoor" type="Node3D" parent="hallway_piece3/RightDoorOrigin" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="Door" type="AnimatableBody3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor" index="0" node_paths=PackedStringArray("AnimationPlayer")]
+transform = Transform3D(-0.104532, 0, -0.994522, 0, 1, 0, 0.994522, 0, -0.104532, 0, 0, 0)
+collision_layer = 5
+script = ExtResource("4_b677v")
+AnimationPlayer = NodePath("AnimationPlayer")
+OpenAnimation = "open"
+CloseAnimation = "close"
+LockedAnimation = "locked"
+Locked = true
+StartOpen = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/Door" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+shape = SubResource("BoxShape3D_nr8ir")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/Door" index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_tyq4m")
+}
+
+[node name="hallway_door" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/Door" index="2" instance=ExtResource("5_2e3eg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
+
+[node name="the fork" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor" index="1" instance=ExtResource("6_b4pt5")]
+transform = Transform3D(0.451205, 0, 0.892418, 0, 1, 0, -0.892418, 0, 0.451205, -0.0084095, 0, -1.19739)
+
+[node name="DoorShutTrigger" type="Area3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor" index="2"]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/DoorShutTrigger" index="0"]
+transform = Transform3D(0.96416, 0, -0.265321, 0, 1, 0, 0.265321, 0, 0.96416, 5.32435, 0.5, 1.97973)
+shape = SubResource("BoxShape3D_mq6so")
+
+[node name="SlamPlayer" type="AudioStreamPlayer3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor" index="3"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.685318, 1.19459, 0.0502009)
+stream = ExtResource("7_ah3hn")
+
+[node name="CreakPlayer" type="AudioStreamPlayer3D" parent="hallway_piece3/RightDoorOrigin/CoolSpecialDoor" index="4"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.0125246, 1.19459, 0.00216198)
+
+[node name="basic" parent="hallway_piece3/RightDoorOrigin" index="1" instance=ExtResource("7_ndofv")]
+
+[node name="HallwayDoor" parent="hallway_piece3/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece3" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece3/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece3/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -120,20 +386,26 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece3" index="6"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece3/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
 [node name="hallway_piece4" parent="." index="9" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.789084, 0, 0.614285, 0, 1, 0, -0.614285, 0, 0.789084, -4.533, 0, -13.206)
+
+[node name="HallwayDoor" parent="hallway_piece4/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece4/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece4" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece4/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece4/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -151,20 +423,26 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece4" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece4/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
 [node name="hallway_piece5" parent="." index="10" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.676876, 0, 0.736097, 0, 1, 0, -0.736097, 0, 0.676876, -6.938, 0, -15.818)
+
+[node name="HallwayDoor" parent="hallway_piece5/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece5/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece5" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece5/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece5/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -182,20 +460,26 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece5" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece5/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
 [node name="hallway_piece6" parent="." index="11" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.547563, 0, 0.836764, 0, 1, 0, -0.836764, 0, 0.547563, -9.741, 0, -17.999)
+
+[node name="HallwayDoor" parent="hallway_piece6/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece6/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece6" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece6/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece6/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -213,20 +497,63 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece6" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece6/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
-[node name="hallway_piece7" parent="." index="12" instance=ExtResource("2_kjwvq")]
+[node name="hallway_piece12" parent="." index="12" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.879648, 0, 0.475624, 0, 1, 0, -0.475624, 0, 0.879648, -3.99891, 0, -22.9333)
+
+[node name="HallwayDoor" parent="hallway_piece12/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece12/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece12" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece12/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece12/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece12/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece12/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece12/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece12/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[node name="hallway_piece7" parent="." index="13" instance=ExtResource("2_kjwvq")]
 transform = Transform3D(0.401948, 0, 0.915662, 0, 1, 0, -0.915662, 0, 0.401948, -12.864, 0, -19.689)
+
+[node name="HallwayDoor" parent="hallway_piece7/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece7/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece7" index="5"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece7/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece7/StaticBody3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
@@ -244,14 +571,170 @@ shape = SubResource("BoxShape3D_m1r8n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_m1r8n")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hallway_piece7" index="6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece7/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35306, 0)
-shadow_enabled = true
-omni_range = 0.5
-omni_attenuation = 0.1
+[node name="hallway_piece8" parent="." index="14" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.245307, 0, 0.969445, 0, 1, 0, -0.969445, 0, 0.245307, -16.222, 0, -20.842)
+
+[node name="HallwayDoor" parent="hallway_piece8/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece8/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece8" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece8/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece8/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece8/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece8/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece8/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece8/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[node name="hallway_piece9" parent="." index="15" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(0.0819385, 0, 0.996637, 0, 1, 0, -0.996637, 0, 0.0819385, -19.725, 0, -21.427)
+
+[node name="HallwayDoor" parent="hallway_piece9/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece9/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece9" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece9/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece9/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece9/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece9/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece9/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece9/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[node name="hallway_piece10" parent="." index="16" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(-0.0819384, 0, 0.996637, 0, 1, 0, -0.996637, 0, -0.0819384, -23.275, 0, -21.427)
+
+[node name="HallwayDoor" parent="hallway_piece10/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece10/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece10" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece10/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece10/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece10/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece10/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece10/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece10/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[node name="hallway_piece11" parent="." index="17" instance=ExtResource("2_kjwvq")]
+transform = Transform3D(-0.245307, 0, 0.969445, 0, 1, 0, -0.969445, 0, -0.245307, -26.778, 0, -20.842)
+
+[node name="HallwayDoor" parent="hallway_piece11/RightDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="HallwayDoor" parent="hallway_piece11/LeftDoorOrigin" index="0" instance=ExtResource("2_a77am")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, -0.03)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="hallway_piece11" index="5"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="hallway_piece11/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+polygon = PackedVector2Array(-1.5, -1.657, -1.5, 1.657, 1.5, 1.906, 1.5, -1.906)
+metadata/FootstepType = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hallway_piece11/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, -1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="hallway_piece11/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1, 1.153)
+shape = SubResource("BoxShape3D_sh021")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="hallway_piece11/StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, -1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="hallway_piece11/StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
+shape = SubResource("BoxShape3D_m1r8n")
+
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="hallway_piece11/StaticBody3D" index="5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.473, 0)
+polygon = PackedVector2Array(-0.862, -1.71, 0.9, -1.856, 0.9, 1.856, -0.862, 1.71)
+metadata/FootstepType = 3
+
+[connection signal="body_entered" from="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/DoorShutTrigger" to="hallway_piece3/RightDoorOrigin/CoolSpecialDoor/Door" method="Close" flags=6 unbinds=1]
+
+[editable path="hallway_piece"]
+[editable path="hallway_piece2"]
+[editable path="hallway_piece3"]
+[editable path="hallway_piece4"]
+[editable path="hallway_piece5"]
+[editable path="hallway_piece6"]
+[editable path="hallway_piece12"]
+[editable path="hallway_piece7"]
+[editable path="hallway_piece8"]
+[editable path="hallway_piece9"]
+[editable path="hallway_piece10"]
+[editable path="hallway_piece11"]

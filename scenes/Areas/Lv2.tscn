@@ -1,0 +1,187 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqd4yf1g7ms58"]
+
+[ext_resource type="PackedScene" uid="uid://kvkxendugi4e" path="res://assets/models/rooms/bridge_thing.glb" id="1_rwuav"]
+[ext_resource type="Script" path="res://src/Things/Switcheroo.cs" id="2_bxgce"]
+[ext_resource type="Script" path="res://src/Things/WallBreaker9000.cs" id="2_bysob"]
+[ext_resource type="Script" path="res://src/Things/BreakableWall.cs" id="3_oav8h"]
+[ext_resource type="AudioStream" uid="uid://chwgfiopplpio" path="res://assets/sounds/window_smash.ogg" id="4_2c6e1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8078"]
+size = Vector3(2828.53, 1, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4ja0b"]
+size = Vector3(2828.53, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukl58"]
+size = Vector3(2, 2, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vl10f"]
+size = Vector3(137, 4, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hctu0"]
+size = Vector3(137, 4, 1)
+
+[node name="bridge_thing" instance=ExtResource("1_rwuav")]
+
+[node name="bridge thing BROKEY entrance" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="bridge thing BROKEY exit" parent="." index="4"]
+transform = Transform3D(-1, 0, 1.50996e-07, 1.30766e-07, 0.5, 0.866025, -7.54979e-08, 0.866025, -0.5, 0, 0, -28)
+
+[node name="LevelEntrance" type="Node3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+
+[node name="Road" type="StaticBody3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Road" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_q8078")
+metadata/FootstepType = 2
+
+[node name="SouthWall" type="StaticBody3D" parent="." index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SouthWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 14.5)
+shape = SubResource("BoxShape3D_4ja0b")
+
+[node name="NorthWall" type="StaticBody3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NorthWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -14.5)
+shape = SubResource("BoxShape3D_4ja0b")
+
+[node name="WallBreaker9000" type="Area3D" parent="." index="11" node_paths=PackedStringArray("Walls")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("2_bysob")
+Walls = [NodePath("../WallHollNE"), NodePath("../WallHoleNW"), NodePath("../WallHoleSE"), NodePath("../WallHoleSW")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBreaker9000" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, 0)
+shape = SubResource("BoxShape3D_ukl58")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallBreaker9000" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 1, 0)
+shape = SubResource("BoxShape3D_ukl58")
+
+[node name="WallHollNE" parent="." index="12"]
+script = ExtResource("3_oav8h")
+BreakSound = ExtResource("4_2c6e1")
+
+[node name="NorthEastWall" type="StaticBody3D" parent="WallHollNE" index="0"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHollNE/NorthEastWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.226, 1, -0.5)
+shape = SubResource("BoxShape3D_vl10f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WallHollNE/NorthEastWall" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.0984, 1, -0.5)
+shape = SubResource("BoxShape3D_hctu0")
+
+[node name="wall patch hole_ne" parent="WallHollNE" index="1"]
+transform = Transform3D(1.011, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0, 0)
+
+[node name="wall patch_ne" parent="WallHollNE" index="2"]
+transform = Transform3D(1.011, 0, 0, 0, 1, 0, 0, 0, 1, 0.015, 0, 0)
+
+[node name="Switcheroo" type="Node" parent="WallHollNE" index="3" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../wall patch_ne")
+Node2 = NodePath("../wall patch hole_ne")
+
+[node name="CollisionSwitcheroo" type="Node" parent="WallHollNE" index="4" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../../NorthWall")
+Node2 = NodePath("../NorthEastWall")
+
+[node name="WallHoleNW" parent="." index="13"]
+script = ExtResource("3_oav8h")
+BreakSound = ExtResource("4_2c6e1")
+
+[node name="Switcheroo" type="Node" parent="WallHoleNW" index="2" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../wall patch_nw")
+Node2 = NodePath("../wall patch hole_nw")
+
+[node name="CollisionSwitcheroo" type="Node" parent="WallHoleNW" index="3" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../../NorthWall")
+Node2 = NodePath("../NorthWestWall")
+
+[node name="NorthWestWall" type="StaticBody3D" parent="WallHoleNW" index="4"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHoleNW/NorthWestWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.226, 1, -0.5)
+shape = SubResource("BoxShape3D_vl10f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WallHoleNW/NorthWestWall" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.0984, 1, -0.5)
+shape = SubResource("BoxShape3D_hctu0")
+
+[node name="WallHoleSE" parent="." index="14"]
+script = ExtResource("3_oav8h")
+BreakSound = ExtResource("4_2c6e1")
+
+[node name="wall patch hole_se" parent="WallHoleSE" index="0"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.048, 0, 0)
+
+[node name="wall patch_se" parent="WallHoleSE" index="1"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0.048, 0, 0)
+
+[node name="Switcheroo" type="Node" parent="WallHoleSE" index="2" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../wall patch_se")
+Node2 = NodePath("../wall patch hole_se")
+
+[node name="CollisionSwitcheroo" type="Node" parent="WallHoleSE" index="3" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../../SouthWall")
+Node2 = NodePath("../SouthEastWall")
+
+[node name="SouthEastWall" type="StaticBody3D" parent="WallHoleSE" index="4"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHoleSE/SouthEastWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.226, 1, -0.5)
+shape = SubResource("BoxShape3D_vl10f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WallHoleSE/SouthEastWall" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.0984, 1, -0.5)
+shape = SubResource("BoxShape3D_hctu0")
+
+[node name="WallHoleSW" parent="." index="15"]
+script = ExtResource("3_oav8h")
+BreakSound = ExtResource("4_2c6e1")
+
+[node name="wall patch hole_sw" parent="WallHoleSW" index="0"]
+transform = Transform3D(-1.01, 0, -1.50996e-07, 0, 1, 0, 1.52506e-07, 0, -1, 0.062, 0, 0)
+
+[node name="wall patch_sw" parent="WallHoleSW" index="1"]
+transform = Transform3D(-1.01, 0, -1.50996e-07, 0, 1, 0, 1.52506e-07, 0, -1, 0.062, 0, 0)
+
+[node name="Switcheroo" type="Node" parent="WallHoleSW" index="2" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../wall patch_sw")
+Node2 = NodePath("../wall patch hole_sw")
+
+[node name="CollisionSwitcheroo" type="Node" parent="WallHoleSW" index="3" node_paths=PackedStringArray("Node1", "Node2")]
+script = ExtResource("2_bxgce")
+Node1 = NodePath("../../SouthWall")
+Node2 = NodePath("../SouthWestWall")
+
+[node name="SouthWestWall" type="StaticBody3D" parent="WallHoleSW" index="4"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallHoleSW/SouthWestWall" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.226, 1, -0.5)
+shape = SubResource("BoxShape3D_vl10f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WallHoleSW/SouthWestWall" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.0984, 1, -0.5)
+shape = SubResource("BoxShape3D_hctu0")
+
+[connection signal="body_entered" from="WallBreaker9000" to="WallBreaker9000" method="CommenceBreakage" flags=6]

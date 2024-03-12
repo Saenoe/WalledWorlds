@@ -3,6 +3,7 @@ using System;
 
 namespace Aberration.Dev;
 
+[GlobalClass]
 public partial class FlyCam : Camera3D {
 
 	[Export] public float Speed { get; set; } = 5.0f;
@@ -15,6 +16,10 @@ public partial class FlyCam : Camera3D {
 				Z = 0.0f,
 			};
 		}
+	}
+
+	public override void _Ready() {
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 	public override void _PhysicsProcess(double dt) {

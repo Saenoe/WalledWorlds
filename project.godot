@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="AcerolaJamEntry"
-run/main_scene="res://scenes/Areas/Lv1.tscn"
+run/main_scene="res://scenes/CoolAwesomeEpicScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+
+[audio]
+
+buses/default_bus_layout="res://assets/audio_bus_layout.tres"
 
 [autoload]
 
@@ -66,6 +70,16 @@ Interact={
 Zoom={
 "deadzone": 0.5,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(74, 7),"global_position":Vector2(78, 48),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+PauseGame={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+Sprint={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
 

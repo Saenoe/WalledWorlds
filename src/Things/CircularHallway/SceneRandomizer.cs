@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Godot;
 
 namespace Aberration;
@@ -6,33 +8,66 @@ namespace Aberration;
 [GlobalClass]
 public partial class SceneRandomizer : Resource {
 
-	[Export]
-	public Godot.Collections.Array<PackedScene> Scenes { get; set; }
+	[Export] public Godot.Collections.Array<PackedScene> LimitedPool { get; set; } = null;
+	[Export] public Godot.Collections.Array<PackedScene> BasicPool { get; set; } = null;
 
-	[Export]
-	public bool LimitedPool { get; set; } = false;
+	private List<PackedScene> _shuffledLimitedPool;
+	private int _limitedPoolIndex = 0;
 
-	private bool _initialised = false;
-	private readonly Queue<PackedScene> _randomPool = new();
-	private uint _randomSeed = 0;
+	private List<PackedScene> _shuffledBasicPool;
+	private int _basicPoolIndex = 0;
+
+	private bool _initialized = false;
+	private RandomNumberGenerator _rng;
 
 	public PackedScene GetRandom() {
-		if (Scenes == null || Scenes.Count == 0) return null;
-		if (_initialised && LimitedPool && _randomPool.Count == 0) return null;
-		if (!_initialised || (!LimitedPool && _randomPool.Count == 0)) Initialise();
+		if (LimitedPool == null && BasicPool == null) return null;
 
-		return _randomPool.Dequeue();
-	}
+		if (!_initialized) Initialize();
+			
 
-	private void Initialise() {
-		_randomPool.EnsureCapacity(Scenes.Count);
-
-		_randomSeed = Util.Hash32((uint)Time.GetTicksUsec());
-		for (int i = 0; i < Scenes.Count; ++i) {
-			_randomPool.Enqueue(Scenes[(int)(Util.Hash32(_randomSeed) % Scenes.Count)]);
+		bool useLimited = ((_rng.Randi() % 2 == 0) || BasicPool == null) && LimitedPool != null && _limitedPoolIndex < _shuffledLimitedPool.Count;
+		if (useLimited) {
+			return _shuffledLimitedPool[_limitedPoolIndex++];
 		}
-		_initialised = true;
+
+		if (BasicPool == null) return null;
+
+		if (_basicPoolIndex >= _shuffledBasicPool.Count) {
+			ShufflePool(_shuffledBasicPool);
+			_basicPoolIndex = 0;
+		}
+
+		return _shuffledBasicPool[_basicPoolIndex++];
 	}
 
+	public void Initialize() {
+
+		_rng = new RandomNumberGenerator {
+			Seed = Util.Hash32((uint)Time.GetTicksMsec()),
+		};
+
+		if (LimitedPool != null) {
+			_shuffledLimitedPool = new List<PackedScene>(LimitedPool);
+			ShufflePool(_shuffledLimitedPool);
+		}
+
+		if (BasicPool != null) {
+			_shuffledBasicPool = new List<PackedScene>(BasicPool);
+			ShufflePool(_shuffledBasicPool);
+		}
+	
+		_initialized = true;
+	}
+
+
+
+	private void ShufflePool(IList pool) {
+		int n = pool.Count;
+		while (n >= 1) {
+			int k = _rng.RandiRange(0, --n);
+			(pool[n], pool[k]) = (pool[k], pool[n]);
+		}
+	}
 
 }

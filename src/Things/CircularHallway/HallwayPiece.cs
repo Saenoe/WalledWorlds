@@ -46,15 +46,10 @@ public partial class HallwayPiece : Node3D {
 	private bool _inRightRoom = false;
 	private bool _rightHardCull = false;
 
-	private ImmediateMesh _fuck;
 
 	private uint _initialSeed;
 
 	public override void _Ready() {
-		_fuck = new();
-		AddChild(new MeshInstance3D {
-			Mesh = _fuck,
-		});
 
 		_leftDoorOrigin = GetNode<Node3D>("LeftDoorOrigin");
 		_leftDoor = _leftDoorOrigin.GetNode<AnimatedDoor>("LeftDoor/Door");
@@ -269,8 +264,8 @@ public partial class HallwayPiece : Node3D {
 			Seed = Util.Hash32(_initialSeed),
 		};
 
-		if (rng.Randf() < LockChance) _leftDoor.Locked = true;
-		if (rng.Randf() < LockChance) _rightDoor.Locked = true;
+		_leftDoor.Locked = rng.Randf() < LockChance;
+		_rightDoor.Locked = rng.Randf() < LockChance;
 	}
 
 }

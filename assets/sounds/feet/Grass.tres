@@ -1,0 +1,23 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://dtq27l5kfxhmv"]
+
+[ext_resource type="AudioStream" uid="uid://clblge7aq824r" path="res://assets/sounds/feet/grass0.ogg" id="1_guv8q"]
+[ext_resource type="AudioStream" uid="uid://d1iqg5y7cnwme" path="res://assets/sounds/feet/grass1.ogg" id="2_axrn4"]
+[ext_resource type="AudioStream" uid="uid://uf26pkoq4287" path="res://assets/sounds/feet/grass2.ogg" id="3_gvt5e"]
+[ext_resource type="AudioStream" uid="uid://cad3010n3l4po" path="res://assets/sounds/feet/grass3.ogg" id="4_yxwws"]
+[ext_resource type="AudioStream" uid="uid://3mep2m6ijcnw" path="res://assets/sounds/feet/grass4.ogg" id="5_pk1km"]
+[ext_resource type="AudioStream" uid="uid://cqegmi7scnrq0" path="res://assets/sounds/feet/grass5.ogg" id="6_q3nyn"]
+
+[resource]
+streams_count = 6
+stream_0/stream = ExtResource("1_guv8q")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_axrn4")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_gvt5e")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_yxwws")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("5_pk1km")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("6_q3nyn")
+stream_5/weight = 1.0

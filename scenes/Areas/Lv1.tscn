@@ -1,23 +1,23 @@
-[gd_scene load_steps=37 format=3 uid="uid://cqx0fmnhjq5jk"]
+[gd_scene load_steps=39 format=3 uid="uid://cqx0fmnhjq5jk"]
 
-[ext_resource type="Script" path="res://src/UI/MonologueLabel.cs" id="1_3yl0n"]
 [ext_resource type="PackedScene" uid="uid://dgxof78ikrdo7" path="res://scenes/Areas/Lv1Base.tscn" id="1_4avfd"]
 [ext_resource type="PackedScene" uid="uid://dbgru8h8oo140" path="res://scenes/Player.tscn" id="2_hovoa"]
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="4_84ka3"]
 [ext_resource type="AudioStream" uid="uid://brnckasvwgjb" path="res://assets/sounds/knock/knock0.ogg" id="5_wet7g"]
+[ext_resource type="Script" path="res://src/Things/CircularHallway/HallwayTeleport.cs" id="6_bwynx"]
 [ext_resource type="Script" path="res://src/Things/SpookyHouse.cs" id="6_jotlt"]
 [ext_resource type="AudioStream" uid="uid://d0p4oli0ii4kj" path="res://assets/sounds/knock/knock1.ogg" id="6_rkve2"]
+[ext_resource type="AudioStream" uid="uid://tbs20u4ery4u" path="res://assets/sounds/get_out.ogg" id="7_htk0d"]
 [ext_resource type="Script" path="res://src/Player/SlowdownArea.cs" id="7_lerg6"]
 [ext_resource type="AudioStream" uid="uid://drx4e0pltfdtw" path="res://assets/sounds/knock/knock2.ogg" id="7_wnpct"]
 [ext_resource type="PackedScene" uid="uid://c68hcketsw5ta" path="res://scenes/Interaction/Doorbell.tscn" id="8_j7c1c"]
 [ext_resource type="Script" path="res://src/SeamlessTeleporter.cs" id="9_eeu1l"]
 [ext_resource type="PackedScene" uid="uid://dc3wywjgiqryx" path="res://scenes/HallwayEntrance.tscn" id="12_xxjgy"]
 [ext_resource type="Script" path="res://src/Things/Switcheroo.cs" id="13_odrfo"]
+[ext_resource type="PackedScene" uid="uid://dob0h636okrx8" path="res://assets/models/cabin_door.glb" id="14_3o4hv"]
 [ext_resource type="PackedScene" uid="uid://dwyox6047pfn0" path="res://scenes/CircularHallway/CircularHallway.tscn" id="14_dw3tq"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_j18x3"]
-font_size = 46
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="AudioStream" uid="uid://dcjigsup55psc" path="res://assets/sounds/door_creek.ogg" id="14_qv0fn"]
+[ext_resource type="Texture2D" uid="uid://etpwvb7abgvy" path="res://assets/textures/sky.png" id="16_58lp6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lnf64"]
 size = Vector3(2.95215, 1, 1)
@@ -48,9 +48,6 @@ radius = 0.703559
 size = Vector3(6.79492, 3.7724, 3.89569)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7564p"]
-size = Vector3(0.8, 2, 0.1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_5jmap"]
 size = Vector3(0.8, 2, 0.1)
 
 [sub_resource type="Animation" id="Animation_ikut7"]
@@ -148,115 +145,116 @@ stream_2/weight = 1.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_ls2es"]
 size = Vector3(1, 3, 1)
 
-[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_gou0a"]
-rayleigh_color = Color(0.301961, 0.403922, 0.6, 1)
-ground_color = Color(1, 1, 1, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4eler"]
+panorama = ExtResource("16_58lp6")
+filter = false
 
-[sub_resource type="Sky" id="Sky_7ipj8"]
-sky_material = SubResource("PhysicalSkyMaterial_gou0a")
+[sub_resource type="Sky" id="Sky_l2m27"]
+sky_material = SubResource("PanoramaSkyMaterial_4eler")
+radiance_size = 0
 
 [sub_resource type="Environment" id="Environment_njnmo"]
 background_mode = 2
-sky = SubResource("Sky_7ipj8")
+sky = SubResource("Sky_l2m27")
 ssao_enabled = true
 ssao_radius = 0.18
-fog_sun_scatter = 0.32
-fog_density = 0.0017
+volumetric_fog_density = 0.0495
+volumetric_fog_anisotropy = 0.39
 adjustment_enabled = true
-adjustment_contrast = 1.05
+adjustment_contrast = 1.09
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DialogueLabel" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.05
-anchor_top = 0.865741
-anchor_right = 0.95
-anchor_bottom = 0.865741
-grow_horizontal = 2
-grow_vertical = 0
-label_settings = SubResource("LabelSettings_j18x3")
-horizontal_alignment = 1
-script = ExtResource("1_3yl0n")
-metadata/_edit_use_anchors_ = true
-
 [node name="BigWorld" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.1829, 0)
+visible = false
 
 [node name="Lv1Base" parent="BigWorld" instance=ExtResource("1_4avfd")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="Doorbell" parent="BigWorld/Lv1Base/lv1terrain/house" index="4" instance=ExtResource("8_j7c1c")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.085)
+[node name="Doorbell" parent="BigWorld/Lv1Base/lv1terrain/house" index="1" instance=ExtResource("8_j7c1c")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.045)
+StartOpen = true
 
-[node name="HallwaySwitcheroo" type="Node" parent="BigWorld/Lv1Base/lv1terrain/house" index="12" node_paths=PackedStringArray("Node1", "Node2")]
+[node name="HallwaySwitcheroo" type="Node" parent="BigWorld/Lv1Base/lv1terrain/house" index="2" node_paths=PackedStringArray("Node1", "Node2")]
 script = ExtResource("13_odrfo")
 Node1 = NodePath("../../../..")
 Node2 = NodePath("../../../../../CircularHallway")
 SwitchMode = 2
 
-[node name="hallway_entrance" parent="BigWorld/Lv1Base/lv1terrain/house" index="13" instance=ExtResource("12_xxjgy")]
+[node name="hallway_entrance" parent="BigWorld/Lv1Base/lv1terrain/house" index="3" instance=ExtResource("12_xxjgy")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.84, -0.09)
 
-[node name="Area3D" type="Area3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance" node_paths=PackedStringArray("ExitNode")]
+[node name="Area3D" type="Area3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
-script = ExtResource("9_eeu1l")
-ExitNode = NodePath("../../../../../../CircularHallway/TeleporterExit")
+script = ExtResource("6_bwynx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4738, 0.5, -0.699997)
+transform = Transform3D(0.814915, 0, 0.57958, 0, 1, 0, -0.57958, 0, 0.814915, 16.9881, 0.5, -13.2062)
 shape = SubResource("BoxShape3D_lnf64")
 
-[node name="TeleporterExit" type="Node3D" parent="BigWorld/Lv1Base/lv1terrain/house" index="14"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.84, 0.045)
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9576, 1.45056, -11.3693)
+stream = ExtResource("7_htk0d")
+
+[node name="HallwayTeleport" type="Node3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" node_paths=PackedStringArray("ExitNode")]
+script = ExtResource("9_eeu1l")
+ExitNode = NodePath("../../../../../../../CircularHallway/TeleporterExit")
+AdjustClipPlanes = false
+
+[node name="EntranceVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, 2.01684)
+aabb = AABB(-1.502, 0, -1.06349, 3.004, 2.495, 2.32697)
+
+[node name="TeleportTimer" type="Timer" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D"]
+wait_time = 4.5
+one_shot = true
+
+[node name="TeleporterExit" type="Node3D" parent="BigWorld/Lv1Base/lv1terrain/house" index="4"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.84, 0)
+
+[node name="doorbell cover" parent="BigWorld/Lv1Base/lv1terrain/house" index="5"]
+visible = false
 
 [node name="SmallWorld" type="Node3D" parent="."]
 
 [node name="Lv1Base" parent="SmallWorld" instance=ExtResource("1_4avfd")]
 
-[node name="house" parent="SmallWorld/Lv1Base/lv1terrain" index="2"]
+[node name="house" parent="SmallWorld/Lv1Base/lv1terrain" index="9"]
 script = ExtResource("6_jotlt")
 
-[node name="ShouldLeaveTimer" type="Timer" parent="SmallWorld/Lv1Base/lv1terrain/house" index="4"]
+[node name="ShouldLeaveTimer" type="Timer" parent="SmallWorld/Lv1Base/lv1terrain/house" index="1"]
 wait_time = 0.001
 one_shot = true
 
-[node name="TeleportSwitcheroo" type="Node" parent="SmallWorld/Lv1Base/lv1terrain/house" index="5" node_paths=PackedStringArray("Node1", "Node2")]
+[node name="TeleportSwitcheroo" type="Node" parent="SmallWorld/Lv1Base/lv1terrain/house" index="2" node_paths=PackedStringArray("Node1", "Node2")]
 script = ExtResource("13_odrfo")
 Node1 = NodePath("../../../..")
 Node2 = NodePath("../../../../../BigWorld")
-SwitchMode = 0
+SwitchMode = 2
 
-[node name="CollisionSwitcheroo" type="Node" parent="SmallWorld/Lv1Base/lv1terrain/house" index="6" node_paths=PackedStringArray("Node1", "Node2")]
+[node name="CollisionSwitcheroo" type="Node" parent="SmallWorld/Lv1Base/lv1terrain/house" index="3" node_paths=PackedStringArray("Node1", "Node2")]
 script = ExtResource("13_odrfo")
 Node1 = NodePath("../NormalCollision")
 Node2 = NodePath("../ButtonOpenCollision")
 
-[node name="OnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="7"]
-visible = false
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="4"]
 aabb = AABB(-0.500207, -0.029282, -0.10767, 1.21331, 2.62814, 0.381355)
 
-[node name="DeckBody" type="StaticBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="8"]
+[node name="DeckBody" type="StaticBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="5"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/DeckBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.84217e-14, 0, 1.42109e-14, 1, 0, -0.1, -1.13)
 shape = SubResource("BoxShape3D_nqe5l")
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/DeckBody"]
 transform = Transform3D(0.999993, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.303635, 1.49326)
 shape = SubResource("BoxShape3D_i13jy")
+metadata/FootstepType = 1
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/DeckBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 1.0516e-12, 0, 5.25802e-13, 1, -2.89701, 1.37006, 1.19673)
@@ -274,7 +272,7 @@ shape = SubResource("BoxShape3D_u1iha")
 transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, 1.007, 1.37, 1.197)
 shape = SubResource("BoxShape3D_u1iha")
 
-[node name="ButtonOpenCollision" type="Node3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="9"]
+[node name="ButtonOpenCollision" type="Node3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="6"]
 
 [node name="ButtonOpenCollisionBody" type="StaticBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house/ButtonOpenCollision"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
@@ -301,7 +299,7 @@ Curve = SubResource("Curve_jcekf")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/ButtonOpenCollision/SlowdownArea"]
 shape = SubResource("CapsuleShape3D_3wh45")
 
-[node name="NormalCollision" type="Node3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="10"]
+[node name="NormalCollision" type="Node3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="7"]
 
 [node name="NormalCollisionBody" type="StaticBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house/NormalCollision"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
@@ -311,7 +309,7 @@ collision_mask = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.28099, -1.80433)
 shape = SubResource("BoxShape3D_wc38a")
 
-[node name="Door" type="AnimatableBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="11" node_paths=PackedStringArray("AnimationPlayer")]
+[node name="Door" type="AnimatableBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="8" node_paths=PackedStringArray("AnimationPlayer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.4, 0.07)
 collision_layer = 5
 collision_mask = 0
@@ -327,10 +325,6 @@ Interruptible = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
 shape = SubResource("BoxShape3D_7564p")
 
-[node name="MeshInstance" type="MeshInstance3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
-mesh = SubResource("BoxMesh_5jmap")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="SmallWorld/Lv1Base/lv1terrain/house/Door"]
 libraries = {
 "": SubResource("AnimationLibrary_1ateo")
@@ -340,53 +334,61 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43119, 1.01148, 0)
 stream = SubResource("AudioStreamRandomizer_ym6rh")
 
-[node name="Doorbell" parent="SmallWorld/Lv1Base/lv1terrain/house" index="12" instance=ExtResource("8_j7c1c")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.085)
+[node name="cabin_door" parent="SmallWorld/Lv1Base/lv1terrain/house/Door" instance=ExtResource("14_3o4hv")]
+
+[node name="Doorbell" parent="SmallWorld/Lv1Base/lv1terrain/house" index="9" instance=ExtResource("8_j7c1c")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.045)
 Locked = true
 
-[node name="Teleporter" type="Area3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="13" node_paths=PackedStringArray("ExitNode")]
+[node name="CreekPlayer" type="AudioStreamPlayer3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell"]
+stream = ExtResource("14_qv0fn")
+
+[node name="Teleporter" type="Area3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="10" node_paths=PackedStringArray("ExitNode")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.4, 0.0450001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.4, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("9_eeu1l")
 ExitNode = NodePath("../../../../../BigWorld/Lv1Base/lv1terrain/house/TeleporterExit")
+PositionScale = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Teleporter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
 shape = SubResource("BoxShape3D_ls2es")
 
-[node name="hallway_entrance" parent="SmallWorld/Lv1Base/lv1terrain/house" index="21" instance=ExtResource("12_xxjgy")]
+[node name="hallway_entrance" parent="SmallWorld/Lv1Base/lv1terrain/house" index="11" instance=ExtResource("12_xxjgy")]
 process_mode = 4
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.84, -0.09)
+
+[node name="doorbell cover" parent="SmallWorld/Lv1Base/lv1terrain/house" index="12"]
+visible = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.749649, 0.342097, -0.566565, -2.11985e-08, 0.856051, 0.516892, 0.661835, -0.387487, 0.641738, 0, 4.6507, 0)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_hovoa")]
-transform = Transform3D(0.768875, 0, 0.639399, 0, 1, 0, -0.639399, 0, 0.768875, -12.4262, 0.4, -14.3172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10207, 1.94341, 5.58819)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_njnmo")
 
 [node name="CircularHallway" parent="." instance=ExtResource("14_dw3tq")]
-process_mode = 4
 
 [node name="TeleporterExit" type="Node3D" parent="CircularHallway"]
 
-[connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" to="BigWorld" method="queue_free" unbinds=1]
-[connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" to="BigWorld/Lv1Base/lv1terrain/house/HallwaySwitcheroo" method="Switch" unbinds=1]
-[connection signal="body_entered" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" to="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" method="Teleport"]
-[connection signal="screen_exited" from="SmallWorld/Lv1Base/lv1terrain/house/OnScreenNotifier" to="BigWorld/Lv1Base/lv1terrain/house/Doorbell" method="ForceOpen"]
-[connection signal="screen_exited" from="SmallWorld/Lv1Base/lv1terrain/house/OnScreenNotifier" to="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" method="ForceOpen"]
-[connection signal="TriedToOpen" from="SmallWorld/Lv1Base/lv1terrain/house/Door" to="SmallWorld/Lv1Base/lv1terrain/house" method="BeginSpooks"]
+[connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D/HallwayTeleport" to="BigWorld" method="queue_free" flags=6 unbinds=1]
+[connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D/HallwayTeleport" to="BigWorld/Lv1Base/lv1terrain/house/HallwaySwitcheroo" method="Switch" flags=6 unbinds=1]
+[connection signal="TriedToOpen" from="SmallWorld/Lv1Base/lv1terrain/house/Door" to="SmallWorld/Lv1Base/lv1terrain/house" method="BeginSpooks" flags=6]
 [connection signal="Opened" from="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" to="SmallWorld/Lv1Base/lv1terrain/house/CollisionSwitcheroo" method="Switch"]
-[connection signal="TriedToOpen" from="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" to="SmallWorld/Lv1Base/lv1terrain/house" method="BeginSpooks"]
+[connection signal="Opening" from="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" to="SmallWorld/Lv1Base/lv1terrain/house/Doorbell/CreekPlayer" method="play" binds= [0.0]]
+[connection signal="TriedToOpen" from="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" to="SmallWorld/Lv1Base/lv1terrain/house" method="BeginSpooks" flags=6]
 [connection signal="Teleported" from="SmallWorld/Lv1Base/lv1terrain/house/Teleporter" to="SmallWorld" method="queue_free" unbinds=1]
 [connection signal="Teleported" from="SmallWorld/Lv1Base/lv1terrain/house/Teleporter" to="SmallWorld/Lv1Base/lv1terrain/house/TeleportSwitcheroo" method="Switch" unbinds=1]
 [connection signal="body_entered" from="SmallWorld/Lv1Base/lv1terrain/house/Teleporter" to="SmallWorld/Lv1Base/lv1terrain/house/Teleporter" method="Teleport"]
 
 [editable path="BigWorld/Lv1Base"]
+[editable path="BigWorld/Lv1Base/lv1terrain/house"]
 [editable path="SmallWorld/Lv1Base"]
+[editable path="SmallWorld/Lv1Base/lv1terrain/house"]

@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwyija3dd3k7e"]
+
+[ext_resource type="PackedScene" uid="uid://cbw324ord61qa" path="res://assets/models/void_house.glb" id="1_pt5vi"]
+[ext_resource type="PackedScene" uid="uid://b57itddtdd8yl" path="res://assets/models/light_cone.glb" id="2_v7fjr"]
+[ext_resource type="Script" path="res://src/Interaction/PhysicalButton.cs" id="3_w172b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xx7q3"]
+size = Vector3(6.392, 1, 5.243)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ti6ad"]
+size = Vector3(1.48999, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1i3fb"]
+size = Vector3(0.2, 3, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r17od"]
+size = Vector3(6.79492, 3.7724, 3.89569)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yrii7"]
+size = Vector3(0.8, 2, 0.1)
+
+[node name="VoidHouse" instance=ExtResource("1_pt5vi")]
+
+[node name="light_cone" parent="." index="2" instance=ExtResource("2_v7fjr")]
+transform = Transform3D(2.14, 0, 0, 0, 2.14, 0, 0, 0, 2.14, 0, 0, -1.38915)
+
+[node name="Collision" type="StaticBody3D" parent="." index="3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.84217e-14, 0, 1.42109e-14, 1, 0, -0.1, -1.13)
+shape = SubResource("BoxShape3D_xx7q3")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Collision" index="1"]
+transform = Transform3D(0.999993, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.303635, 1.49326)
+shape = SubResource("BoxShape3D_ti6ad")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.0516e-12, 0, 5.25802e-13, 1, -2.89701, 1.37006, 1.19673)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Collision" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.0516e-12, 0, 5.25802e-13, 1, 2.897, 1.37, 1.197)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Collision" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, -1.00719, 1.37006, 1.19673)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Collision" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, 1.007, 1.37, 1.197)
+shape = SubResource("BoxShape3D_1i3fb")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Collision" index="6"]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 2.28099, -1.80433)
+shape = SubResource("BoxShape3D_r17od")
+
+[node name="TheDoor" type="StaticBody3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.40071, 0.07)
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("3_w172b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TheDoor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TheDoor" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+shape = SubResource("BoxShape3D_yrii7")
+
+[node name="LevelExit" type="Node3D" parent="." index="6"]

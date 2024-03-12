@@ -1,0 +1,57 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://c4ydai16r7cn5"
+path="res://.godot/imported/office_building.glb-c2c2e16286effff02007635008f7d2fb.scn"
+
+[deps]
+
+source_file="res://assets/models/office_building.glb"
+dest_files=["res://.godot/imported/office_building.glb-c2c2e16286effff02007635008f7d2fb.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=false
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"conked crete": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/conked_crete.material"
+},
+"hallway carpet": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/carlpet.material"
+},
+"lamp": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/vertex_color_noise.tres"
+},
+"light": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/vertex_color_noise.tres"
+},
+"vertex color noise": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/vertex_color_noise.tres"
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=0

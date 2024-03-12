@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmg5naaf6thl5"]
+
+[ext_resource type="PackedScene" uid="uid://blvih3weefkpc" path="res://assets/models/cubicle_floor.glb" id="1_t52xp"]
+
+[node name="cubicle_floor" instance=ExtResource("1_t52xp")]

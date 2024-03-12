@@ -8,6 +8,8 @@ void vertex() {}
 void fragment() {
 	vec4 sample = texture(albedo_tex, UV);
 	
+	if (sample.a < 0.5) discard;
+	
 	ALBEDO = sample.rgb * COLOR.rgb;
 	ROUGHNESS = 1.0;
 	SPECULAR = 0.0;

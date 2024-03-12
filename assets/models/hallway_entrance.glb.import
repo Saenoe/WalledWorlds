@@ -43,6 +43,10 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/hallway_wall.material"
 },
+"vertex color noise": {
+"use_external/enabled": true,
+"use_external/path": "res://assets/materials/vertex_color_noise.tres"
+},
 "wood floor": {
 "use_external/enabled": true,
 "use_external/path": "res://assets/materials/woodfloor0.material"

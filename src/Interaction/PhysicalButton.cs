@@ -2,7 +2,7 @@ using Godot;
 
 namespace Aberration;
 
-public partial class PhysicalButton : AnimatableBody3D, IInteractible {
+public partial class PhysicalButton : StaticBody3D, IInteractible {
 
 	[Signal] public delegate void PressedEventHandler();
 	[Signal] public delegate void ReleasedEventHandler();
