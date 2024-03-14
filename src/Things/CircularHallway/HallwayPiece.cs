@@ -13,14 +13,17 @@ public partial class HallwayPiece : Node3D {
 	[Signal] public delegate void RightDoorExitedEventHandler(int id);
 
 
-	[Export] public SceneRandomizer LeftRooms { get; set; }
-	[Export] public SceneRandomizer RightRooms { get; set; }
+	//[Export] public SceneRandomizer LeftRooms { get; set; }
+	//[Export] public SceneRandomizer RightRooms { get; set; }
 
 	[Export(PropertyHint.Range, "0.0,1.0,0.05")]
 	public float LockChance { get; set; } = 0.5f;
 
 	[Export]
 	public int Id { get; set; } = 0; 
+
+	[Export]
+	public RandomNumberGenerator Rng { get; set; } = null;
 
 	public bool IsPlayerInside { get; set; } = false;
 
@@ -112,7 +115,13 @@ public partial class HallwayPiece : Node3D {
 
 	private void CreateOrShowLeftRoom() {
 		if (_leftRoom == null || _leftRoomScene == null) {
-			_leftRoomScene = LeftRooms.GetRandom();
+			
+			if (Rng.Randf() < 0.25f && !GameManager.SharedRoomRandomizer.LimitedPoolEmpty) {
+				_leftRoomScene = GameManager.SharedRoomRandomizer.GetRandom();
+			} else {
+				_leftRoomScene = GameManager.InsideRoomRandomizer.GetRandom();
+			}
+
 			_leftRoom = _leftRoomScene.Instantiate<Node3D>();
 
 			GetRoomMaterials(_leftRoom, _leftRoomMaterials, _leftRoomMeshes);
@@ -141,7 +150,23 @@ public partial class HallwayPiece : Node3D {
 
 	public void CreateOrShowRightRoom() {
 		if (_rightRoom == null || _rightRoomScene == null) {
-			_rightRoomScene = RightRooms.GetRandom();
+
+			if (GameManager.InsideRoomRandomizer.LimitedPoolEmpty && GameManager.OutsideRoomRandomizer.LimitedPoolEmpty && GameManager.SharedRoomRandomizer.LimitedPoolEmpty) {
+				if (Rng.Randf() > 0.5f && GameManager.HallwayExitScene != null) {
+					_rightRoomScene = GameManager.HallwayExitScene;
+					GameManager.HallwayExitScene = null;
+					
+				}
+			}
+			
+			if (_rightRoomScene == null) {
+				if (Rng.Randf() < 0.25f && !GameManager.SharedRoomRandomizer.LimitedPoolEmpty) {
+					_rightRoomScene = GameManager.SharedRoomRandomizer.GetRandom();
+				} else {
+					_rightRoomScene = GameManager.OutsideRoomRandomizer.GetRandom();
+				}
+			}
+			
 			_rightRoom = _rightRoomScene.Instantiate<Node3D>();
 
 			GetRoomMaterials(_rightRoom, _rightRoomMaterials, _rightRoomMeshes);
@@ -260,12 +285,12 @@ public partial class HallwayPiece : Node3D {
 	}
 
 	private void Randomize() {
-		RandomNumberGenerator rng = new RandomNumberGenerator {
+		if (Rng == null) Rng = new RandomNumberGenerator {
 			Seed = Util.Hash32(_initialSeed),
 		};
 
-		_leftDoor.Locked = rng.Randf() < LockChance;
-		_rightDoor.Locked = rng.Randf() < LockChance;
+		_leftDoor.Locked = Rng.Randf() < LockChance;
+		_rightDoor.Locked = Rng.Randf() < LockChance;
 	}
 
 }

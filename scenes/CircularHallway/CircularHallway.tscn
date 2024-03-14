@@ -6,3 +6,5 @@
 script = ExtResource("1_qfpj8")
 PieceAngle = 9.474
 Radius = 21.5
+
+[node name="LevelEntrance" type="Node3D" parent="."]

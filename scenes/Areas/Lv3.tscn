@@ -1,22 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1rk36hnk6o4r"]
+[gd_scene load_steps=10 format=3 uid="uid://d1rk36hnk6o4r"]
 
 [ext_resource type="PackedScene" uid="uid://ucounq0tivpi" path="res://scenes/CircularHallway/Rooms/ThePanopticon.tscn" id="1_unhra"]
 [ext_resource type="PackedScene" uid="uid://crcn0t0ri2hct" path="res://scenes/Interaction/Doors/ThePanopticonDoor.tscn" id="2_r7mar"]
 [ext_resource type="Script" path="res://src/Things/Void.cs" id="4_o22np"]
+[ext_resource type="AudioStream" uid="uid://7f4dfnhdfq0e" path="res://assets/sounds/click.ogg" id="4_pdkfj"]
+[ext_resource type="AudioStream" uid="uid://d03c3y1ssurbs" path="res://assets/sounds/splishy_splashy.ogg" id="5_yb6hk"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xma2a"]
 size = Vector3(2.40039, 3, 1)
 
-[sub_resource type="Environment" id="Environment_wk8mp"]
-background_mode = 1
-fog_light_color = Color(0, 0, 0, 1)
-fog_light_energy = 0.0
-fog_density = 0.0
-
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_f8kjr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sentu"]
-size = Vector3(100, 1, 100)
+size = Vector3(1000, 5, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k72xu"]
+size = Vector3(20.4863, 1, 12.8252)
 
 [node name="Lv3" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.181, 0)
@@ -31,16 +30,14 @@ transform = Transform3D(-0.54695, 0, -0.837165, 0, 1, 0, 0.837165, 0, -0.54695, 
 [node name="StaticBody3D2" type="StaticBody3D" parent="ThePanopticon/bars" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ThePanopticon/bars/StaticBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, -0.52, -0.225)
 shape = SubResource("BoxShape3D_xma2a")
 
 [node name="void box" parent="ThePanopticon" index="121"]
 visible = true
 
 [node name="ThePanopticonDoor" parent="ThePanopticon" instance=ExtResource("2_r7mar")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_wk8mp")
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.18)
 
 [node name="Void" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -124.247, 0)
@@ -50,11 +47,13 @@ script = ExtResource("4_o22np")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Void/StaticBody3D"]
 shape = SubResource("WorldBoundaryShape3D_f8kjr")
+metadata/FootstepType = 4
 
 [node name="VoidArea" type="Area3D" parent="Void"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
-monitorable = false
+audio_bus_override = true
+audio_bus_name = &"VoidReverb"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Void/VoidArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -64,6 +63,34 @@ shape = SubResource("BoxShape3D_sentu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00493431, 99.4869, -23.8186)
 aabb = AABB(-21, -1, -18, 42, 2, 36)
 
+[node name="ClickOnSound" type="AudioStreamPlayer" parent="Void"]
+stream = ExtResource("4_pdkfj")
+pitch_scale = 0.85
+bus = &"VoidReverb"
+
+[node name="ClickOffSound" type="AudioStreamPlayer" parent="Void"]
+stream = ExtResource("4_pdkfj")
+pitch_scale = 0.75
+bus = &"VoidReverb"
+
+[node name="SplishySplashy" type="AudioStreamPlayer" parent="Void"]
+stream = ExtResource("5_yb6hk")
+pitch_scale = 0.4
+bus = &"Water"
+
+[node name="SplishySplashy" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, -9.44391, -23.5469)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SplishySplashy"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.492216, 0)
+shape = SubResource("BoxShape3D_k72xu")
+
 [connection signal="body_entered" from="Void/VoidArea" to="Void" method="InitiateVoidening" flags=6 unbinds=1]
+[connection signal="body_entered" from="SplishySplashy" to="Void" method="SplishySplashy" unbinds=1]
 
 [editable path="ThePanopticon"]
+[editable path="ThePanopticon/DoorOrigin_011/ThePanopticonDoor"]
+[editable path="ThePanopticon/DoorOrigin_011/ThePanopticonDoor/AnimatableBody3D/the_panopticon_door"]

@@ -8,7 +8,15 @@ feet/grass0-5.ogg [1](https://freesound.org/people/GiocoSound/sounds/421129/) [2
 [locked_metal_door.ogg](https://freesound.org/people/giddster/sounds/336660/)  
 [forest_abience.ogg](https://freesound.org/people/sonidosreales245/sounds/517042/)  
 [window_smash.ogg](https://freesound.org/people/egomassive/sounds/536763/)  
-
+[locked_wood_door.ogg](https://freesound.org/people/TRP/sounds/577273/)  
+[wood_door_close.ogg](https://freesound.org/people/ninebilly/sounds/173018/)  
+[click.ogg](https://freesound.org/people/SomeoneCool15/sounds/423512/)  
+[splishy_splashy.ogg](https://freesound.org/people/kyles/sounds/450855/)  
+[metal_drag.ogg + CLOINK.ogg](https://freesound.org/people/thenotcheeseman/sounds/679206/)  
+[wood_door_open.ogg](https://freesound.org/people/EricsSoundschmiede/sounds/457360/)  
+[door_slam.ogg](https://freesound.org/people/bennstir/sounds/80929/)  
+[blackout.ogg](https://freesound.org/people/swag1773/sounds/636578/)  
+[squeak_door.ogg](https://freesound.org/people/kyles/sounds/51805/)
 
 ### textures
 [dirt0.png](https://pixabay.com/photos/dirt-soil-potting-mix-ground-mud-947985/)  
@@ -29,9 +37,16 @@ feet/grass0-5.ogg [1](https://freesound.org/people/GiocoSound/sounds/421129/) [2
 [morebrix.png](https://www.publicdomainpictures.net/en/view-image.php?image=170801&picture=brick-wall)  
 [ploink.png](https://www.publicdomainpictures.net/en/view-image.php?image=126957&picture=orange-steel)  
 [carlpet.png](https://www.publicdomainpictures.net/en/view-image.php?image=303105&picture=dark-red-carpet-texture-background)  
-[hallwaydoor.png + cabindoor.png](https://www.publicdomainpictures.net/en/view-image.php?image=251673&picture=wooden-door)  
+[hallwaydoor.png + cabindoor.png + whitedoor.png](https://www.publicdomainpictures.net/en/view-image.php?image=251673&picture=wooden-door)  
 [sky.png](https://hdri-haven.com/hdri/cloudy-sky-dome)  
 [keebord.png](https://www.publicdomainpictures.net/en/view-image.php?image=84093&picture=keyboard-and-mouse)  
+[sunset.png](https://hdri-haven.com/hdri/stone-pit-sunset-sky-dome)  
+[the door.png](https://openclipart.org/detail/99613/the-door)
 
 ### models
 all made by yours truly
+
+
+anything not listed here i made  
+(or i forgor)  
+(but i checked and i think i listed everything i borrowed)  

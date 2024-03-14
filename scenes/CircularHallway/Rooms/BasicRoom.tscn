@@ -1,6 +1,143 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxtx6b1iwhpl2"]
+[gd_scene load_steps=25 format=3 uid="uid://dxtx6b1iwhpl2"]
 
 [ext_resource type="PackedScene" uid="uid://dye78754dbt0u" path="res://assets/models/rooms/basic.glb" id="1_prc7d"]
+[ext_resource type="Script" path="res://src/Things/CircularHallway/BathroomDoor.cs" id="2_2rofa"]
+[ext_resource type="PackedScene" uid="uid://dnke31d283spj" path="res://assets/models/rooms/basic_door.glb" id="2_p4pll"]
+[ext_resource type="AudioStream" uid="uid://dc7n4ds0ucvsi" path="res://assets/sounds/locked_wood_door.ogg" id="4_6hexy"]
+[ext_resource type="AudioStream" uid="uid://bpa84qvv00sgr" path="res://assets/sounds/wood_door_close.ogg" id="5_l0go2"]
+[ext_resource type="AudioStream" uid="uid://dtiap6fubpg4r" path="res://assets/sounds/wood_door_open.ogg" id="5_ycq3m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cs5f2"]
+size = Vector3(0.8, 2, 0.1)
+
+[sub_resource type="Animation" id="Animation_s3m2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3cjeq"]
+resource_name = "close"
+length = 1.061
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.67552, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_l0go2")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_ar1c6"]
+resource_name = "locked"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.0314159, 0), Vector3(0, -0.0506145, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_6hexy")
+}],
+"times": PackedFloat32Array(-0.15)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_lpyju"]
+resource_name = "open"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.67552, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_ycq3m")
+}],
+"times": PackedFloat32Array(-0.0602614)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tub2h"]
+_data = {
+"RESET": SubResource("Animation_s3m2o"),
+"close": SubResource("Animation_3cjeq"),
+"locked": SubResource("Animation_ar1c6"),
+"open": SubResource("Animation_lpyju")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6o7xx"]
+size = Vector3(2, 1, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4s6ty"]
+size = Vector3(0.75, 2, 2.00415)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmp6i"]
+size = Vector3(1.5, 1, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cb4kx"]
+size = Vector3(1.5, 1, 0.275)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rgkov"]
 size = Vector3(0.1, 4, 5.5)
@@ -28,41 +165,83 @@ size = Vector3(3.5, 1, 5.5)
 
 [node name="basic" instance=ExtResource("1_prc7d")]
 
+[node name="BathroomDoor" type="Node3D" parent="bathroom" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.95, 0, -0.95)
+
+[node name="Door" type="AnimatableBody3D" parent="bathroom/BathroomDoor" index="0" node_paths=PackedStringArray("AnimationPlayer")]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("2_2rofa")
+AnimationPlayer = NodePath("AnimationPlayer")
+OpenAnimation = "open"
+CloseAnimation = "close"
+LockedAnimation = "locked"
+
+[node name="basic_door" parent="bathroom/BathroomDoor/Door" index="0" instance=ExtResource("2_p4pll")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bathroom/BathroomDoor/Door" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
+shape = SubResource("BoxShape3D_cs5f2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="bathroom/BathroomDoor/Door" index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_tub2h")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="bathroom/BathroomDoor/Door" index="3"]
+transform = Transform3D(0.831061, 0, -0.556181, 0, 1, 0, 0.556181, 0, 0.831061, 0.663732, 0.939226, 0)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.19, -3.75)
+shape = SubResource("BoxShape3D_6o7xx")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.625, 0.69, -3.7)
+shape = SubResource("BoxShape3D_4s6ty")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.5, -0.45)
+shape = SubResource("BoxShape3D_qmp6i")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 0.5, -1.862)
+shape = SubResource("BoxShape3D_cb4kx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 1, -2.75)
 shape = SubResource("BoxShape3D_rgkov")
 
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -0.45)
 shape = SubResource("BoxShape3D_h40am")
 
-[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.95, 1, -1.895)
 shape = SubResource("BoxShape3D_vambh")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.55, 1, -2.75)
 shape = SubResource("BoxShape3D_rgkov")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="8"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1, -5.55)
 shape = SubResource("BoxShape3D_8cqmq")
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1, 0.05)
 shape = SubResource("BoxShape3D_4ndux")
 
-[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1, -2.05)
 shape = SubResource("BoxShape3D_ktnsn")
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1, 0.05)
 shape = SubResource("BoxShape3D_2ui6d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="8"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, -0.5, -2.75)
 shape = SubResource("BoxShape3D_u06x0")
 metadata/FootstepType = 1

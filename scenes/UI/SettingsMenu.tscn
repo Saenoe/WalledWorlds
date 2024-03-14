@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccqhvforsdff2"]
+
+[ext_resource type="Script" path="res://src/UI/SettingsMenu.cs" id="1_4xhgn"]
+
+[node name="SettingsMenu" type="VBoxContainer"]
+script = ExtResource("1_4xhgn")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="MouseSensitivitySlider" type="HSlider" parent="."]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="VSyncCheckbox" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "VSync"
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[connection signal="value_changed" from="VolumeSlider" to="." method="SetVolume"]
+[connection signal="value_changed" from="MouseSensitivitySlider" to="." method="ChangeMouseSensitivity"]
+[connection signal="toggled" from="VSyncCheckbox" to="." method="UpdateVsync"]
+[connection signal="toggled" from="FullscreenCheckbox" to="." method="SetFullscreen"]

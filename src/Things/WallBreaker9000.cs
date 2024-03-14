@@ -27,7 +27,6 @@ public partial class WallBreaker9000 : Node {
 		foreach (var wall in Walls) {
 
 			float distance = cameraPlane.DistanceTo(wall.GlobalPosition);
-			GD.PrintS(wall.Name, distance);
 
 			if (distance < mostEpicestDistance) {
 				mostEpicestDistance = distance;

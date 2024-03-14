@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://c6mpqg8y0x2qa"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_water.gdshader" id="1_rrpd6"]
+[ext_resource type="Texture2D" uid="uid://dlffyhi1f3k8e" path="res://assets/textures/water.png" id="2_2bnyr"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_rrpd6")
+shader_parameter/window_quad = null
+shader_parameter/enable_cull = false
+shader_parameter/wave_scale = Vector4(0, 0, 0, 0)
+shader_parameter/height_offset = 0.0
+shader_parameter/color = Color(0.580392, 0.466667, 0.203922, 1)
+shader_parameter/scroll = Vector2(0, 0)
+shader_parameter/mask_tex = ExtResource("2_2bnyr")

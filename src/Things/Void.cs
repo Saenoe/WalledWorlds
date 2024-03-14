@@ -7,11 +7,17 @@ public partial class Void : Node3D {
 
 	private Node3D _theGuy;
 	private Node3D _theCoolHouse;
+	private AudioStreamPlayer _clickOnSound;
+	private AudioStreamPlayer _clickOffSound;
 
 	private Node3D _nextScene;
 
 	public void InitiateVoidening() {
+		GameManager.WorldEnvironment.Environment.BackgroundMode = Godot.Environment.BGMode.Color;
+
 		_theGuy = ResourceLoader.Load<PackedScene>("res://scenes/TheGuy.tscn").Instantiate<Node3D>();
+		_clickOnSound = GetNode<AudioStreamPlayer>("ClickOnSound");
+		_clickOffSound = GetNode<AudioStreamPlayer>("ClickOffSound");
 
 		SceneTreeTimer timer = GetTree().CreateTimer(10.0);
 		timer.Timeout += () => {
@@ -37,6 +43,7 @@ public partial class Void : Node3D {
 
 		AddChild(_theGuy);
 		PositionInfront(_theGuy, 50.0f);
+		_clickOnSound.Play();
 
 		
 		_theGuy.GetNode<Area3D>("CloseArea").Connect(Area3D.SignalName.BodyEntered, Callable.From((Node3D _) => {
@@ -51,6 +58,7 @@ public partial class Void : Node3D {
 		timer.Timeout += () => {
 			RemoveChild(_theGuy);
 			_theGuy.QueueFree();
+			_clickOffSound.Play();
 
 			SummonTheCoolHouse();
 		};
@@ -63,6 +71,7 @@ public partial class Void : Node3D {
 		timer.Timeout += () => {
 			AddChild(_theCoolHouse);
 			PositionInfront(_theCoolHouse, 50.0f);
+			_clickOnSound.Play();
 
 			_theCoolHouse.GetNode<PhysicalButton>("TheDoor").Pressed += () => {
 
@@ -82,5 +91,8 @@ public partial class Void : Node3D {
 		GameManager.Player.Camera.GlobalRotation *= new Vector3(0, 1, 1);
 	}
 
+	public void SplishySplashy() {
+		GetNode<AudioStreamPlayer>("SplishySplashy").Play();
+	}
 
 }

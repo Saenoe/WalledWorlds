@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SceneRandomizer" load_steps=3 format=3 uid="uid://metl5dlujwf1"]
+
+[ext_resource type="PackedScene" uid="uid://elsltp4xqkea" path="res://scenes/CircularHallway/Rooms/Spookers.tscn" id="1_0n0tg"]
+[ext_resource type="Script" path="res://src/Things/CircularHallway/SceneRandomizer.cs" id="1_hoqbh"]
+
+[resource]
+script = ExtResource("1_hoqbh")
+LimitedPool = Array[PackedScene]([ExtResource("1_0n0tg")])
+BasicPool = null
+LimitedPullChance = 100.0

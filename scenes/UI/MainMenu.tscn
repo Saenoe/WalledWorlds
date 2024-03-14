@@ -1,9 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bartbbeo2nuxk"]
+[gd_scene load_steps=10 format=3 uid="uid://bartbbeo2nuxk"]
 
 [ext_resource type="Script" path="res://src/UI/MainMenu.cs" id="1_u0fbt"]
+[ext_resource type="PackedScene" uid="uid://ccqhvforsdff2" path="res://scenes/UI/SettingsMenu.tscn" id="2_boamj"]
+[ext_resource type="PackedScene" uid="uid://dgxof78ikrdo7" path="res://scenes/Areas/Lv1Base.tscn" id="3_bkr3y"]
+[ext_resource type="Texture2D" uid="uid://etpwvb7abgvy" path="res://assets/textures/sky.png" id="4_4a25n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q5qdp"]
-font_size = 176
+font_size = 181
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nfmt"]
+font_size = 36
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_xehx2"]
+panorama = ExtResource("4_4a25n")
+filter = false
+
+[sub_resource type="Sky" id="Sky_m16gp"]
+sky_material = SubResource("PanoramaSkyMaterial_xehx2")
+
+[sub_resource type="Environment" id="Environment_boh3l"]
+background_mode = 2
+sky = SubResource("Sky_m16gp")
+sky_rotation = Vector3(0, -0.383972, 0)
+fog_enabled = true
+fog_density = 0.002
+fog_sky_affect = 0.0
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -14,24 +35,69 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u0fbt")
 
+[node name="SettingsMenu" parent="." instance=ExtResource("2_boamj")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.746
+anchor_right = 0.233
+anchor_bottom = 0.97
+alignment = 2
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.073
-anchor_right = 0.9
-anchor_bottom = 0.468
-grow_horizontal = 2
-text = "the epic game"
+anchor_left = 0.03
+anchor_top = 0.058
+anchor_right = 1.617
+anchor_bottom = 0.454
+offset_top = 33.048
+offset_right = -129.024
+grow_horizontal = 0
+text = "Walled Worlds"
 label_settings = SubResource("LabelSettings_q5qdp")
-vertical_alignment = 1
+vertical_alignment = 2
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 0
-offset_left = 251.0
-offset_top = 298.0
-offset_right = 966.0
-offset_bottom = 610.0
-text = "play the epic game"
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.058
+anchor_right = 1.617
+anchor_bottom = 0.454
+offset_left = 33.0
+offset_top = 33.048
+offset_right = -129.024
+grow_horizontal = 0
+text = "A Short Stroll"
+label_settings = SubResource("LabelSettings_0nfmt")
+vertical_alignment = 2
 
-[connection signal="pressed" from="Button" to="." method="CommenceEpicGaming"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.46
+anchor_right = 0.304
+anchor_bottom = 0.583
+
+[node name="play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+alignment = 0
+
+[node name="exit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+alignment = 0
+
+[node name="Lv1Base" parent="." instance=ExtResource("3_bkr3y")]
+
+[node name="Camera3D" type="Camera3D" parent="Lv1Base"]
+transform = Transform3D(-0.999507, -0.00550842, -0.0309241, 0, 0.984503, -0.175367, 0.0314109, -0.17528, -0.984017, -3.55561, 2.0071, 7.51951)
+environment = SubResource("Environment_boh3l")
+
+[connection signal="pressed" from="VBoxContainer/play" to="." method="CommenceEpicGaming"]
+[connection signal="pressed" from="VBoxContainer/exit" to="." method="ExitGame"]

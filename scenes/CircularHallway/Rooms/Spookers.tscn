@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://elsltp4xqkea"]
+
+[ext_resource type="PackedScene" uid="uid://xe8uy4vdh7md" path="res://assets/models/rooms/spookers.glb" id="1_we0tr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a5s3r"]
+size = Vector3(4, 1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0x0h"]
+size = Vector3(1, 4, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8qxtu"]
+size = Vector3(1, 3, 4)
+
+[node name="spookers" instance=ExtResource("1_we0tr")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -7.5)
+shape = SubResource("BoxShape3D_a5s3r")
+metadata/FootstepType = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, -7.5)
+shape = SubResource("BoxShape3D_r0x0h")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, -7.5)
+shape = SubResource("BoxShape3D_r0x0h")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.5, -11.1833)
+shape = SubResource("BoxShape3D_8qxtu")

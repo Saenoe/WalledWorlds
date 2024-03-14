@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://gxa5c0qiopod"]
+
+[ext_resource type="Shader" path="res://assets/shaders/room_cull_diffuse.gdshader" id="1_l1k55"]
+[ext_resource type="Texture2D" uid="uid://crd82l43jdtkj" path="res://assets/textures/keebord.png" id="2_8i5gt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l1k55")
+shader_parameter/window_quad = PackedVector3Array(-0.4, 2, 0, 0.4, 2, 0, 0.4, 0, 0, -0.4, 0, 0)
+shader_parameter/enable_cull = false
+shader_parameter/albedo_tex = ExtResource("2_8i5gt")

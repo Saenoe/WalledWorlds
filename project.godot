@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="AcerolaJamEntry"
+config/name="Walled Worlds"
 run/main_scene="res://scenes/CoolAwesomeEpicScene.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="walled_worlds"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/show_image=false
 
 [audio]
 
@@ -24,12 +28,17 @@ InternalMonologue="*res://src/UI/InternalMonologue.cs"
 
 [display]
 
-window/size/mode=2
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="AcerolaJamEntry"
+
+[game]
+
+mouse_sensitivity=0.002
 
 [importer_defaults]
 

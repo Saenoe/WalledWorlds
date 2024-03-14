@@ -11,6 +11,10 @@ public partial class SceneRandomizer : Resource {
 	[Export] public Godot.Collections.Array<PackedScene> LimitedPool { get; set; } = null;
 	[Export] public Godot.Collections.Array<PackedScene> BasicPool { get; set; } = null;
 
+	[Export] public float LimitedPullChance { get; set; } = 0.5f;
+
+	public bool LimitedPoolEmpty => _limitedPoolIndex >= LimitedPool.Count;
+
 	private List<PackedScene> _shuffledLimitedPool;
 	private int _limitedPoolIndex = 0;
 
@@ -26,7 +30,7 @@ public partial class SceneRandomizer : Resource {
 		if (!_initialized) Initialize();
 			
 
-		bool useLimited = ((_rng.Randi() % 2 == 0) || BasicPool == null) && LimitedPool != null && _limitedPoolIndex < _shuffledLimitedPool.Count;
+		bool useLimited = ((_rng.Randf() < LimitedPullChance) || BasicPool == null) && LimitedPool != null && _limitedPoolIndex < _shuffledLimitedPool.Count;
 		if (useLimited) {
 			return _shuffledLimitedPool[_limitedPoolIndex++];
 		}

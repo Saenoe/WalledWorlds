@@ -45,7 +45,7 @@ _subresources={
 },
 "pool water": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/sewage.tres"
+"use_external/path": "res://assets/materials/room_cull_sewage.tres"
 },
 "rust": {
 "use_external/enabled": true,

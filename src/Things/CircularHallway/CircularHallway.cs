@@ -29,9 +29,14 @@ public partial class CircularHallway : Node3D {
 	private bool _playerInRoom = false;
 	private int _roomPieceId = 0; 
 
+	private RandomNumberGenerator _rng;
+
 	public override void _Ready() {
+		_rng = new RandomNumberGenerator();
+
 		_pieceScene = ResourceLoader.Load<PackedScene>("res://scenes/CircularHallway/HallwayPiece.tscn");
 		_circlePieceCount = (int)(Math.Round(360.0f / PieceAngle) + 0.5f);
+
 	}
 
 	public override void _Process(double _dt) {
@@ -71,6 +76,8 @@ public partial class CircularHallway : Node3D {
 			
 			newPiece.RightDoorEntered += OnRightRoomEntered;
 			newPiece.RightDoorExited += OnRightRoomExited;
+
+			newPiece.Rng = _rng;
 
 			_pieces.Add(id, newPiece);
 		}

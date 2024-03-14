@@ -50,15 +50,26 @@ public partial class OfficeMaze : Node3D {
 
 		var entranceOnScreenNotifier = GetNode<VisibleOnScreenNotifier3D>("EntranceOnScreenNotifier");
 		var entranceSwitcheroo = GetNode<Switcheroo>("EntranceSwitcheroo");
-		if (!entranceOnScreenNotifier.IsOnScreen()) {
+		if (!entranceOnScreenNotifier.IsOnScreen() && !CameraBehind(entranceOnScreenNotifier)) {
 			entranceSwitcheroo.Switch();
 		} else {
-			entranceOnScreenNotifier.Connect(
-				VisibleOnScreenNotifier3D.SignalName.ScreenExited,
-				Callable.From(entranceSwitcheroo.Switch),
-				(int)ConnectFlags.OneShot
-			);
-		}
+			entranceOnScreenNotifier.ScreenExited += TryCloseEntranceDoor;
+		} 
+	}
+
+	public void TryCloseEntranceDoor() {
+		var entranceOnScreenNotifier = GetNode<VisibleOnScreenNotifier3D>("EntranceOnScreenNotifier");
+		if (CameraBehind(entranceOnScreenNotifier)) return;
+
+		GetNode<Switcheroo>("EntranceSwitcheroo").Switch();
+
+		entranceOnScreenNotifier.ScreenExited -= TryCloseEntranceDoor;
+	}
+
+	private bool CameraBehind(Node3D node) {
+		Camera3D camera = GetViewport().GetCamera3D();
+
+		return new Plane(node.GlobalBasis.Z, node.GlobalPosition).DistanceTo(camera.GlobalPosition) > 0;
 	}
 
 	public void EngageDisappearMode() {
@@ -71,6 +82,8 @@ public partial class OfficeMaze : Node3D {
 		foreach (var cubicle in _cubicles) {
 			cubicle.CubicleChance = 0.0f;
 			cubicle.GetNode<VisibleOnScreenNotifier3D>("OnScreenNotifier").ScreenExited += () => {
+				
+
 				_cubicles.Remove(cubicle);
 				_cubiclesRoot.RemoveChild(cubicle);
 				if (_cubicles.Count == 0) {
@@ -81,5 +94,7 @@ public partial class OfficeMaze : Node3D {
 
 
 		GetNode<Node3D>("LightCone").Visible = false;
+		GetNode<AudioStreamPlayer3D>("LightCone/AudioStreamPlayer3D").Play();
+		GetNode<AudioStreamPlayer3D>("LightCone/AudioStreamPlayer3D2").Play();
 	}
 }

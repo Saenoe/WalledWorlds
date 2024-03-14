@@ -9,6 +9,9 @@ uniform float fade_smoothing = 0.4;
 
 uniform bool ignore_sky = false;
 
+uniform vec3 fade_color : source_color;
+uniform float fade_alpha;
+
 void vertex() {
 	POSITION = vec4(VERTEX.xy * 2.0, 0.0, 1.0);
 }
@@ -28,7 +31,7 @@ void fragment() {
 	blend_factor = mix(blend_factor, 1.0, step(0.99999, depth_sample) * float(ignore_sky));
 	
 
-	ALBEDO = mix(vec3(lum), sample.rgb, blend_factor);
+	ALBEDO = mix(mix(vec3(lum), sample.rgb, blend_factor), fade_color, fade_alpha);
 }
 
 

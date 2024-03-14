@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ucounq0tivpi"]
+[gd_scene load_steps=9 format=3 uid="uid://ucounq0tivpi"]
 
 [ext_resource type="PackedScene" uid="uid://dkl3tuyisefli" path="res://assets/models/rooms/the_panopticon.glb" id="1_ed8rs"]
 [ext_resource type="PackedScene" uid="uid://crcn0t0ri2hct" path="res://scenes/Interaction/Doors/ThePanopticonDoor.tscn" id="2_774go"]
+[ext_resource type="PackedScene" uid="uid://dgf4wca003f25" path="res://scenes/CircularHallway/Rooms/ThePanopticonCell.tscn" id="3_2x87k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ifc2q"]
 size = Vector3(40, 1, 40)
@@ -77,11 +78,20 @@ omni_attenuation = 0.392292
 
 [node name="ThePanopticonDoor" parent="DoorOrigin_008" index="0" instance=ExtResource("2_774go")]
 
-[node name="ThePanopticonDoor" parent="DoorOrigin_009" index="0" instance=ExtResource("2_774go")]
+[node name="ThePanopticonDoor2" parent="DoorOrigin_009" index="0" instance=ExtResource("2_774go")]
 
 [node name="ThePanopticonDoor" parent="DoorOrigin_010" index="0" instance=ExtResource("2_774go")]
 
 [node name="ThePanopticonDoor" parent="DoorOrigin_011" index="0" instance=ExtResource("2_774go")]
+
+[node name="the_panopticon_door" parent="DoorOrigin_011/ThePanopticonDoor/AnimatableBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0, 0)
+
+[node name="the panopticon door window" parent="DoorOrigin_011/ThePanopticonDoor/AnimatableBody3D/the_panopticon_door" index="1"]
+visible = false
+
+[node name="panopticon_cell" parent="DoorOrigin_011" index="1" instance=ExtResource("3_2x87k")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="ThePanopticonDoor" parent="DoorOrigin_012" index="0" instance=ExtResource("2_774go")]
 
@@ -211,7 +221,7 @@ omni_attenuation = 0.392292
 visible = false
 
 [node name="ThePanopticonArea" type="Area3D" parent="." index="122"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.332029, -20)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
@@ -221,3 +231,6 @@ audio_bus_name = &"PanopticonReverb"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ThePanopticonArea" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.9249, 0)
 shape = SubResource("CylinderShape3D_ndoep")
+
+[editable path="DoorOrigin_011/ThePanopticonDoor"]
+[editable path="DoorOrigin_011/ThePanopticonDoor/AnimatableBody3D/the_panopticon_door"]

@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4meejge3glan"]
+[gd_scene load_steps=6 format=3 uid="uid://b4meejge3glan"]
 
 [ext_resource type="Script" path="res://src/Autoload/GameManager.cs" id="1_hplie"]
+[ext_resource type="Texture2D" uid="uid://etpwvb7abgvy" path="res://assets/textures/sky.png" id="2_a3x7f"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_hmdbq"]
+panorama = ExtResource("2_a3x7f")
+filter = false
+
+[sub_resource type="Sky" id="Sky_1mxy8"]
+sky_material = SubResource("PanoramaSkyMaterial_hmdbq")
+
+[sub_resource type="Environment" id="Environment_3kdxu"]
+background_mode = 2
+sky = SubResource("Sky_1mxy8")
+fog_enabled = true
+fog_density = 0.002
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_contrast = 1.09
 
 [node name="CoolAwesomeEpicScene" type="Node"]
 script = ExtResource("1_hplie")
+DefaualtEnvironment = SubResource("Environment_3kdxu")

@@ -17,7 +17,6 @@ public partial class SpookyHouse : Node {
 
 			if (!_onScreenNotifier.IsOnScreen()) {
 				doorbell.ForceOpen();
-				GD.Print("whu");
 			} else {
 				_onScreenNotifier.Connect(
 					VisibleOnScreenNotifier3D.SignalName.ScreenExited,
@@ -27,8 +26,6 @@ public partial class SpookyHouse : Node {
 			}
 
 			_shouldLeaveTimer.GetParent().RemoveChild(_shouldLeaveTimer);
-			InternalMonologue.SubmitText("Nobody home.", 2.0);
-			InternalMonologue.SubmitText("Guess I have to try again later...", 5.0);
 		};
 	}
 

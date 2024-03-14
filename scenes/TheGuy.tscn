@@ -1,46 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0iosyrvesr5e"]
+[gd_scene load_steps=9 format=3 uid="uid://b0iosyrvesr5e"]
 
 [ext_resource type="PackedScene" uid="uid://dp6vfxd1c0p6p" path="res://assets/models/the_guy.glb" id="1_ah7aq"]
 [ext_resource type="PackedScene" uid="uid://b57itddtdd8yl" path="res://assets/models/light_cone.glb" id="2_sblo2"]
 [ext_resource type="PackedScene" uid="uid://diqlm3gu305gs" path="res://assets/models/light_floor.glb" id="3_u10fx"]
-
-[sub_resource type="Animation" id="Animation_n8h7f"]
-resource_name = "fall_over_lmao"
-length = 2.0
-step = 0.025
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.725, 0.0251718, 1.571, -0.35, -1.0923, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation:z")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 2)
-}
+[ext_resource type="AudioStream" uid="uid://dgk8xhi2ierwm" path="res://assets/sounds/boompf.ogg" id="4_6wiiv"]
 
 [sub_resource type="Animation" id="Animation_creqe"]
 length = 0.001
@@ -77,6 +40,68 @@ tracks/2/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n8h7f"]
+resource_name = "fall_over_lmao"
+length = 3.127
+step = 0.025
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.725, 0.0251718, 1.571, -0.35, -1.0923, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer3D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.925),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_detva"]
 _data = {
@@ -85,7 +110,7 @@ _data = {
 }
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_cm8kn"]
-radius = 0.828839
+radius = 1.84408
 
 [node name="TheGuy" instance=ExtResource("1_ah7aq")]
 
@@ -109,3 +134,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_cm8kn")
 
 [node name="light_floor" parent="." index="5" instance=ExtResource("3_u10fx")]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="6"]
+stream = ExtResource("4_6wiiv")
+attenuation_model = 3
+pitch_scale = 0.45
+bus = &"VoidReverb"

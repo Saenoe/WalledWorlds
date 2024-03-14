@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://m7m3lcbja653"]
+[gd_scene load_steps=11 format=3 uid="uid://m7m3lcbja653"]
 
 [ext_resource type="PackedScene" uid="uid://c4ydai16r7cn5" path="res://assets/models/office_building.glb" id="1_gv2jo"]
+[ext_resource type="Script" path="res://src/Things/OfficeBuildingBandaid.cs" id="2_qhplg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i00jp"]
-size = Vector3(0.8, 1, 0.6)
+[sub_resource type="BoxShape3D" id="BoxShape3D_vl6si"]
+size = Vector3(0.8, 2, 0.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_41321"]
 size = Vector3(54, 1, 36)
@@ -20,13 +21,19 @@ size = Vector3(8.6, 3, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_tpkwf"]
 size = Vector3(38, 3, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_i00jp"]
+size = Vector3(0.8, 1, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_80jcw"]
+size = Vector3(56, 12, 37)
+
 [node name="OfficeBuilding" instance=ExtResource("1_gv2jo")]
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="EntranceDoor" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceDoor/StaticBody3D2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.5)
-shape = SubResource("BoxShape3D_i00jp")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.3)
+shape = SubResource("BoxShape3D_vl6si")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Exit" index="0"]
 
@@ -67,3 +74,15 @@ shape = SubResource("BoxShape3D_tpkwf")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -0.5, 18.3023)
 shape = SubResource("BoxShape3D_i00jp")
+
+[node name="OfficeBuildingArea" type="Area3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -18.6)
+collision_layer = 2
+collision_mask = 2
+audio_bus_override = true
+audio_bus_name = &"OfficeReverb"
+script = ExtResource("2_qhplg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OfficeBuildingArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("BoxShape3D_80jcw")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://qi231wdy68ae"]
+[gd_scene load_steps=12 format=3 uid="uid://qi231wdy68ae"]
 
 [ext_resource type="PackedScene" uid="uid://38qmtmclj2dd" path="res://assets/models/rooms/sewer.glb" id="1_5ri7x"]
 [ext_resource type="Script" path="res://src/SeamlessTeleporter.cs" id="2_4cxxe"]
@@ -9,8 +9,17 @@ size = Vector3(1, 1, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_igeew"]
 size = Vector3(56, 1, 6.8)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_e6b3s"]
+size = Vector3(1, 4, 6.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s4vno"]
+size = Vector3(33.3, 4, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qpdq"]
+size = Vector3(21.3, 4, 3)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_hna5f"]
-size = Vector3(27.4, 1, 3)
+size = Vector3(27.4, 2, 3.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_16q0c"]
 size = Vector3(1.4, 1, 2.6)
@@ -19,7 +28,7 @@ size = Vector3(1.4, 1, 2.6)
 size = Vector3(1.4, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gavvo"]
-size = Vector3(53, 4, 12)
+size = Vector3(55.04, 4, 12)
 
 [node name="sewer" instance=ExtResource("1_5ri7x")]
 
@@ -44,30 +53,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -0.9, -6.1)
 shape = SubResource("BoxShape3D_igeew")
 metadata/FootstepType = 2
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 0.1, -6.1)
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0.6, -6.1)
+shape = SubResource("BoxShape3D_e6b3s")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.5, 0.6, -6.1)
+shape = SubResource("BoxShape3D_e6b3s")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35033, 0.6, -11)
+shape = SubResource("BoxShape3D_s4vno")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.35, 0.6, -11)
+shape = SubResource("BoxShape3D_3qpdq")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.35, 0.6, -1.2)
+shape = SubResource("BoxShape3D_s4vno")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -11.3503, 0.6, -1.2)
+shape = SubResource("BoxShape3D_3qpdq")
+metadata/FootstepType = 2
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.3, 0.6, -6.1)
 shape = SubResource("BoxShape3D_hna5f")
 
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.35, 0.1, -6.1)
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.3, 0.6, -6.1)
 shape = SubResource("BoxShape3D_hna5f")
 
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="9"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -1.2)
 shape = SubResource("BoxShape3D_16q0c")
 metadata/FootstepType = 2
 
-[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="4"]
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, -0.5, -11)
 shape = SubResource("BoxShape3D_16q0c")
 metadata/FootstepType = 2
 
-[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="5"]
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="11"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 12, -0.707285, -9.69798)
 shape = SubResource("BoxShape3D_6gnfe")
 metadata/FootstepType = 2
 
-[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="StaticBody3D" index="12"]
 transform = Transform3D(1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.707285, -2.50183)
 shape = SubResource("BoxShape3D_6gnfe")
 metadata/FootstepType = 2

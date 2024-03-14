@@ -1,12 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cd5q62txmchkv"]
+[gd_scene load_steps=12 format=3 uid="uid://cd5q62txmchkv"]
 
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="1_a6t7y"]
 [ext_resource type="PackedScene" uid="uid://mkyv3m2w7xg" path="res://assets/models/hallway_door.glb" id="2_eb2ir"]
-[ext_resource type="Material" uid="uid://0ga3us8mlvvs" path="res://assets/materials/vertex_color_noise.tres" id="2_vbcwo"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_ytkxw"]
-material = ExtResource("2_vbcwo")
-size = Vector3(0.8, 2, 0.1)
+[ext_resource type="AudioStream" uid="uid://dtiap6fubpg4r" path="res://assets/sounds/wood_door_open.ogg" id="4_io5o3"]
+[ext_resource type="AudioStream" uid="uid://dc7n4ds0ucvsi" path="res://assets/sounds/locked_wood_door.ogg" id="4_uqum3"]
+[ext_resource type="AudioStream" uid="uid://bpa84qvv00sgr" path="res://assets/sounds/wood_door_close.ogg" id="5_v6rak"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nr8ir"]
 size = Vector3(0.8, 2, 0.1)
@@ -26,6 +24,37 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_3cjeq"]
+resource_name = "close"
+length = 1.061
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.67552, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_v6rak")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/1/use_blend = true
+
 [sub_resource type="Animation" id="Animation_ar1c6"]
 resource_name = "locked"
 length = 0.5
@@ -42,6 +71,21 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0.0314159, 0), Vector3(0, -0.0506145, 0), Vector3(0, 0, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_uqum3")
+}],
+"times": PackedFloat32Array(-0.15)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lpyju"]
 resource_name = "open"
@@ -58,10 +102,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 1.67552, 0)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_io5o3")
+}],
+"times": PackedFloat32Array(-0.0602614)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tub2h"]
 _data = {
 "RESET": SubResource("Animation_s3m2o"),
+"close": SubResource("Animation_3cjeq"),
 "locked": SubResource("Animation_ar1c6"),
 "open": SubResource("Animation_lpyju")
 }
@@ -73,18 +133,15 @@ collision_layer = 5
 script = ExtResource("1_a6t7y")
 AnimationPlayer = NodePath("AnimationPlayer")
 OpenAnimation = "open"
-CloseAnimation = "open"
+CloseAnimation = "close"
 LockedAnimation = "locked"
 Locked = true
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Door"]
+transform = Transform3D(0.831061, 0, -0.556181, 0, 1, 0, 0.556181, 0, 0.831061, 0.663732, 0.939226, 0)
+
 [node name="hallway_door" parent="Door" instance=ExtResource("2_eb2ir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Door"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)
-visible = false
-mesh = SubResource("BoxMesh_ytkxw")
-skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1, 0)

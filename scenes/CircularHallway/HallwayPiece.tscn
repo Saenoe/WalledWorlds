@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bk54hanhm1n1c"]
+[gd_scene load_steps=7 format=3 uid="uid://bk54hanhm1n1c"]
 
 [ext_resource type="PackedScene" uid="uid://b4ttgwbwv4pax" path="res://assets/models/hallway_piece.glb" id="1_o2esp"]
 [ext_resource type="Script" path="res://src/Things/CircularHallway/HallwayPiece.cs" id="2_p2kg3"]
 [ext_resource type="PackedScene" uid="uid://cd5q62txmchkv" path="res://scenes/Interaction/Doors/HallwayDoor.tscn" id="3_goxig"]
-[ext_resource type="Resource" uid="uid://c2q5bgbeb8pwy" path="res://scenes/CircularHallway/Rooms/InsideRooms.tres" id="3_jhvcx"]
-[ext_resource type="Resource" uid="uid://dxmtqrjx4b1mu" path="res://scenes/CircularHallway/Rooms/OutsideRooms.tres" id="4_58g66"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmrqy"]
 size = Vector3(0.1, 4, 1.506)
@@ -12,11 +10,12 @@ size = Vector3(0.1, 4, 1.506)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ky7jm"]
 size = Vector3(0.1, 4, 1.257)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_hq2qm"]
+size = Vector3(0.260239, 3, 0.365)
+
 [node name="HallwayPiece" instance=ExtResource("1_o2esp")]
 script = ExtResource("2_p2kg3")
-LeftRooms = ExtResource("3_jhvcx")
-RightRooms = ExtResource("4_58g66")
-LockChance = 0.0
+LockChance = 0.2
 
 [node name="RightDoorVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="RightDoorOrigin" index="0"]
 aabb = AABB(-0.4, 0, 0, 0.8, 2, 0)
@@ -58,3 +57,11 @@ shape = SubResource("BoxShape3D_ky7jm")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1, 1.029)
 shape = SubResource("BoxShape3D_ky7jm")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="StaticBody3D" index="6"]
+transform = Transform3D(0.996637, 0, 0.0819385, 0, 1, 0, -0.0819385, 0, 0.996637, 1.40296, 1, -1.89579)
+shape = SubResource("BoxShape3D_hq2qm")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" index="7"]
+transform = Transform3D(0.996637, 0, 0.0819385, 0, 1, 0, -0.0819385, 0, 0.996637, -1.40357, 1, -1.66505)
+shape = SubResource("BoxShape3D_hq2qm")

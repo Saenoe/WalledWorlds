@@ -63,54 +63,9 @@ public partial class TwistyCorridor : Node3D {
 
 		PhysicsServer3D.AreaSetParam(GetWorld3D().Space, PhysicsServer3D.AreaParameter.GravityVector, Vector3.Down);
 
-		GameManager.SwitchGameScene(nextLevel, GetNode<Node3D>("LevelExit").GlobalTransform);
+		GameManager.WorldEnvironment.Environment.BackgroundMode = Godot.Environment.BGMode.Color;
+		GameManager.WorldEnvironment.Environment.BackgroundColor = new Color(0, 0, 0);
+		GameManager.SwitchGameScene(nextLevel, GetNode<Node3D>("ThePanopticon/SpookyDoorEntry").GlobalTransform);
 	}
 
 }
-
-/*
-using Godot;
-using System;
-
-namespace Aberration;
-
-public partial class TwistyCorridor : Node3D {
-
-	public float CurrentRotation { get; private set; } = 0.0f;
-	public bool PlayerInside { get; private set; } = false;
-	public Vector3 CorridorDirection { get; private set; }
-
-	private Area3D _twistArea;
-	private Node3D _twistStart;
-	private Node3D _twistEnd;
-
-	private Plane _entryPlane;
-
-	public override void _Ready() {
-		_twistArea = GetNode<Area3D>("TwistArea");
-		_twistStart = GetNode<Node3D>("TwistStart");
-		_twistEnd = GetNode<Node3D>("TwistEnd");
-
-		_twistArea.BodyEntered += (Node3D body) => { if (body is Player) PlayerInside = true; };
-		_twistArea.BodyExited += (Node3D body) => { if (body is Player) PlayerInside = false; };
-	
-		CorridorDirection = _twistStart.GlobalPosition.DirectionTo(_twistEnd.GlobalPosition);
-		_entryPlane = new(CorridorDirection, _twistStart.GlobalPosition);
-	}
-
-	public override void _PhysicsProcess(double _dt) {
-		if (!PlayerInside) return;
-
-
-		float corridorLength = _entryPlane.DistanceTo(_twistEnd.GlobalPosition);
-		
-		float playerDepth = Math.Clamp(_entryPlane.DistanceTo(GameManager.Player.GlobalPosition) / corridorLength, 0.0f, 1.0f);
-
-
-		CurrentRotation = Mathf.Lerp(_twistStart.GlobalRotation.Z, _twistEnd.GlobalRotation.Z, playerDepth);
-	}
-
-
-
-}
-*/

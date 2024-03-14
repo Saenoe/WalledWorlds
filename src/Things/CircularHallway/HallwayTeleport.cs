@@ -20,20 +20,26 @@ public partial class HallwayTeleport : Area3D {
 			_player.Play();
 			_teleportTimer.Timeout += () => {
 				if (!_entranceVisibleNotifier.IsOnScreen()) {
-					_teleporter.Teleport(body);
-					GD.Print("whe");
+					CommenceTeleportation(body);
 				} else {
 					_entranceVisibleNotifier.Connect(VisibleOnScreenNotifier3D.SignalName.ScreenExited, Callable.From(() => {
-						_teleporter.Teleport(body);
+						CommenceTeleportation(body);
 					}), (int)ConnectFlags.OneShot);
 				}
 			};
 			_teleportTimer.Start();
 		}), (int)ConnectFlags.OneShot);
-
 	}
 
+	private void CommenceTeleportation(Node3D body) {
+		_teleporter.Teleport(body);
+		GameManager.WorldEnvironment.Environment.FogEnabled = false;
 
+		((PanoramaSkyMaterial)GameManager.WorldEnvironment.Environment.Sky.SkyMaterial).Panorama =
+			ResourceLoader.Load<Texture2D>("res://assets/textures/sunset.png");
+
+
+	}
 
 
 }

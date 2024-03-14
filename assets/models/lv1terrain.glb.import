@@ -41,7 +41,7 @@ _subresources={
 },
 "pool water": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/materials/water.tres"
+"use_external/path": "res://assets/materials/lake.tres"
 },
 "tree": {
 "use_external/enabled": true,

@@ -1,43 +1,65 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4btld5dox7v"]
+[gd_scene load_steps=3 format=3 uid="uid://d4btld5dox7v"]
 
 [ext_resource type="Script" path="res://src/UI/PauseMenu.cs" id="1_iusaj"]
+[ext_resource type="PackedScene" uid="uid://ccqhvforsdff2" path="res://scenes/UI/SettingsMenu.tscn" id="2_miuxe"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iusaj")
 
-[node name="Resume !!!!" type="Button" parent="."]
-layout_mode = 0
-offset_left = 357.0
-offset_top = 157.0
-offset_right = 788.0
-offset_bottom = 309.0
-text = "resum
-e"
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.792157)
 
-[node name="exit 2 menyoo" type="Button" parent="."]
-layout_mode = 0
-offset_left = 315.0
-offset_top = 272.0
-offset_right = 746.0
-offset_bottom = 424.0
-text = "exit to menu :("
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.5
+anchor_right = 0.03
+anchor_bottom = 0.5
+offset_top = -62.0
+offset_right = 155.0
+offset_bottom = 62.0
+grow_vertical = 2
 
-[node name="exit gmame" type="Button" parent="."]
-layout_mode = 0
-offset_left = 361.0
-offset_top = 454.0
-offset_right = 792.0
-offset_bottom = 606.0
-text = "exit the gamE :( :( :("
+[node name="Resume !!!!" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Resume"
+alignment = 0
 
-[connection signal="pressed" from="Resume !!!!" to="." method="OnResumePress"]
-[connection signal="pressed" from="exit 2 menyoo" to="." method="OnExitToMenuPress"]
-[connection signal="pressed" from="exit gmame" to="." method="OnExitGamePress"]
+[node name="exit 2 menyoo" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit to menu"
+alignment = 0
+
+[node name="exit gmame" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit to desktop"
+alignment = 0
+
+[node name="SettingsMenu2" parent="." instance=ExtResource("2_miuxe")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03
+anchor_top = 0.746
+anchor_right = 0.233
+anchor_bottom = 0.97
+alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/Resume !!!!" to="." method="OnResumePress"]
+[connection signal="pressed" from="VBoxContainer/exit 2 menyoo" to="." method="OnExitToMenuPress"]
+[connection signal="pressed" from="VBoxContainer/exit gmame" to="." method="OnExitGamePress"]

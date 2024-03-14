@@ -14,9 +14,6 @@ public partial class Player : CharacterBody3D {
 		Void,
 	}
 
-	// todo move this somewhere sane
-	private const float MouseSensitivity = 0.002f;
-
 	[Export] public float WalkSpeed { get; set; } = 2.0f;
 	[Export] public float SprintMultiplier { get; set; } = 2.0f;
 	[Export] public float InteractRange { get; set; } = 2.0f;
@@ -24,6 +21,20 @@ public partial class Player : CharacterBody3D {
 	[Export] public float Fov { get; set; } = 60.0f;
 	[Export] public float ZoomTime { get; set; } = 0.1f;
 	[Export] public float ZoomAmount { get; set; } = 20.0f;
+
+	[Export] public float ExposureAdjustSpeed { get; set; } = 0.001f;
+
+	[Export] public float Exposure { get; set; } = 1.0f;
+
+	private float _viewBobHeight = 0.025f;
+	[Export] public float ViewBobHeight {
+		get => _viewBobHeight;
+		set {
+			_viewBobHeight = value;
+			if (!IsNodeReady()) return;
+			_animationPlayer.GetAnimation("walk").TrackSetKeyValue(0, 1, Vector3.Up * (1.6f + ViewBobHeight));
+		}
+	}
 
 	[Export] public bool DebugMode { get; set; } = false;
 
@@ -33,7 +44,7 @@ public partial class Player : CharacterBody3D {
 
 	private AnimationPlayer _animationPlayer;
 
-	public IInteractible InteractingWith { get; set; }= null;
+	public IInteractible InteractingWith { get; set; } = null;
 
 	private FootstepTypeEnum _currentFootstep = FootstepTypeEnum.Grass;
 
@@ -42,6 +53,7 @@ public partial class Player : CharacterBody3D {
 	private bool _wasOnFloor = false;
 
 	private float _zoomLevel = 0.0f;
+
 
 	public override void _Ready() {
 		if (DebugMode) Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -52,6 +64,7 @@ public partial class Player : CharacterBody3D {
 		_footstepPlayer = GetNode<AudioStreamPlayer3D>("FootstepPlayer");
 		_footstepPlayer.Stream = ResourceLoader.Load<AudioStream>($"res://assets/sounds/feet/{_currentFootstep}.tres");
 
+		_animationPlayer.GetAnimation("walk").TrackSetKeyValue(0, 1, Vector3.Up * (1.6f + ViewBobHeight));
 
 		_interactRay = new RayCast3D {
 			TargetPosition = Vector3.Forward * InteractRange,
@@ -69,8 +82,8 @@ public partial class Player : CharacterBody3D {
 	public override void _Input(InputEvent ev) {
 		if (ev is InputEventMouseMotion mouseMotion) {
 			Camera.Rotation = new Vector3 {
-				X = Math.Clamp(Camera.Rotation.X - mouseMotion.Relative.Y * MouseSensitivity, -1.5f, 1.5f),
-				Y = Camera.Rotation.Y - mouseMotion.Relative.X * MouseSensitivity,
+				X = Math.Clamp(Camera.Rotation.X - mouseMotion.Relative.Y * GameManager.MouseSensitivity, -1.5f, 1.5f),
+				Y = Camera.Rotation.Y - mouseMotion.Relative.X * GameManager.MouseSensitivity,
 				Z = 0.0f,
 			};
 		}

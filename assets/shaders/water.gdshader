@@ -2,10 +2,16 @@ shader_type spatial;
 render_mode unshaded;
 
 uniform sampler2D mask_tex : source_color, filter_nearest_mipmap_anisotropic;
+uniform sampler3D wave_noise;
+uniform vec4 wave_scale = vec4(0.0);
+uniform float height_offset = 0.0f;
+
 uniform vec3 color : source_color = vec3(1.0);
 uniform vec2 scroll = vec2(0.0);
 
-void vertex() {}
+void vertex() {
+	VERTEX += (texture(wave_noise, vec3(UV * wave_scale.xy, TIME * wave_scale.w)).xyz * 2.0 - 1.0) * wave_scale.z - height_offset;
+}
 
 void fragment() {
 	vec2 uv = UV + scroll * TIME;

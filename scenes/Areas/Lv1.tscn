@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://cqx0fmnhjq5jk"]
+[gd_scene load_steps=42 format=3 uid="uid://cqx0fmnhjq5jk"]
 
 [ext_resource type="PackedScene" uid="uid://dgxof78ikrdo7" path="res://scenes/Areas/Lv1Base.tscn" id="1_4avfd"]
+[ext_resource type="PackedScene" uid="uid://dquffskbbmnro" path="res://assets/models/doorbell.glb" id="2_7ivjn"]
 [ext_resource type="PackedScene" uid="uid://dbgru8h8oo140" path="res://scenes/Player.tscn" id="2_hovoa"]
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="4_84ka3"]
 [ext_resource type="AudioStream" uid="uid://brnckasvwgjb" path="res://assets/sounds/knock/knock0.ogg" id="5_wet7g"]
@@ -10,14 +11,14 @@
 [ext_resource type="AudioStream" uid="uid://tbs20u4ery4u" path="res://assets/sounds/get_out.ogg" id="7_htk0d"]
 [ext_resource type="Script" path="res://src/Player/SlowdownArea.cs" id="7_lerg6"]
 [ext_resource type="AudioStream" uid="uid://drx4e0pltfdtw" path="res://assets/sounds/knock/knock2.ogg" id="7_wnpct"]
-[ext_resource type="PackedScene" uid="uid://c68hcketsw5ta" path="res://scenes/Interaction/Doorbell.tscn" id="8_j7c1c"]
 [ext_resource type="Script" path="res://src/SeamlessTeleporter.cs" id="9_eeu1l"]
 [ext_resource type="PackedScene" uid="uid://dc3wywjgiqryx" path="res://scenes/HallwayEntrance.tscn" id="12_xxjgy"]
 [ext_resource type="Script" path="res://src/Things/Switcheroo.cs" id="13_odrfo"]
 [ext_resource type="PackedScene" uid="uid://dob0h636okrx8" path="res://assets/models/cabin_door.glb" id="14_3o4hv"]
 [ext_resource type="PackedScene" uid="uid://dwyox6047pfn0" path="res://scenes/CircularHallway/CircularHallway.tscn" id="14_dw3tq"]
 [ext_resource type="AudioStream" uid="uid://dcjigsup55psc" path="res://assets/sounds/door_creek.ogg" id="14_qv0fn"]
-[ext_resource type="Texture2D" uid="uid://etpwvb7abgvy" path="res://assets/textures/sky.png" id="16_58lp6"]
+[ext_resource type="AudioStream" uid="uid://fn5i3cc3y5e0" path="res://assets/sounds/doorbell.ogg" id="15_x3jb3"]
+[ext_resource type="AudioStream" uid="uid://daululhgn4q85" path="res://assets/sounds/forest_ambience.ogg" id="19_pbdgn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lnf64"]
 size = Vector3(2.95215, 1, 1)
@@ -142,39 +143,136 @@ stream_1/weight = 1.0
 stream_2/stream = ExtResource("7_wnpct")
 stream_2/weight = 1.0
 
+[sub_resource type="Animation" id="Animation_ae8a8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_40ukp"]
+resource_name = "open"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 1.53589, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../../../AmbientSound:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-15.273, -80.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreekPlayer:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ktr7i"]
+resource_name = "ring"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RingPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mna5"]
+_data = {
+"RESET": SubResource("Animation_ae8a8"),
+"open": SubResource("Animation_40ukp"),
+"ring": SubResource("Animation_ktr7i")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_whjq6"]
+size = Vector3(0.2, 0.4, 0.065)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ls2es"]
 size = Vector3(1, 3, 1)
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_4eler"]
-panorama = ExtResource("16_58lp6")
-filter = false
-
-[sub_resource type="Sky" id="Sky_l2m27"]
-sky_material = SubResource("PanoramaSkyMaterial_4eler")
-radiance_size = 0
-
-[sub_resource type="Environment" id="Environment_njnmo"]
-background_mode = 2
-sky = SubResource("Sky_l2m27")
-ssao_enabled = true
-ssao_radius = 0.18
-volumetric_fog_density = 0.0495
-volumetric_fog_anisotropy = 0.39
-adjustment_enabled = true
-adjustment_contrast = 1.09
 
 [node name="Node3D" type="Node3D"]
 
 [node name="BigWorld" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -21.1829, 0)
-visible = false
 
 [node name="Lv1Base" parent="BigWorld" instance=ExtResource("1_4avfd")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="Doorbell" parent="BigWorld/Lv1Base/lv1terrain/house" index="1" instance=ExtResource("8_j7c1c")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.045)
-StartOpen = true
+[node name="Doorbell" parent="BigWorld/Lv1Base/lv1terrain/house" index="1" instance=ExtResource("2_7ivjn")]
+transform = Transform3D(0.0174497, 0, 0.499695, 0, 0.5, 0, -0.499695, 0, 0.0174497, 0.648255, 1.94, 0.0949695)
 
 [node name="HallwaySwitcheroo" type="Node" parent="BigWorld/Lv1Base/lv1terrain/house" index="2" node_paths=PackedStringArray("Node1", "Node2")]
 script = ExtResource("13_odrfo")
@@ -203,7 +301,6 @@ stream = ExtResource("7_htk0d")
 [node name="HallwayTeleport" type="Node3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D" node_paths=PackedStringArray("ExitNode")]
 script = ExtResource("9_eeu1l")
 ExitNode = NodePath("../../../../../../../CircularHallway/TeleporterExit")
-AdjustClipPlanes = false
 
 [node name="EntranceVisibleNotifier" type="VisibleOnScreenNotifier3D" parent="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, 2.01684)
@@ -214,12 +311,13 @@ wait_time = 4.5
 one_shot = true
 
 [node name="TeleporterExit" type="Node3D" parent="BigWorld/Lv1Base/lv1terrain/house" index="4"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.84, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.6, 1.842, 0)
 
 [node name="doorbell cover" parent="BigWorld/Lv1Base/lv1terrain/house" index="5"]
 visible = false
 
 [node name="SmallWorld" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 63.5601, 0)
 
 [node name="Lv1Base" parent="SmallWorld" instance=ExtResource("1_4avfd")]
 
@@ -227,7 +325,7 @@ visible = false
 script = ExtResource("6_jotlt")
 
 [node name="ShouldLeaveTimer" type="Timer" parent="SmallWorld/Lv1Base/lv1terrain/house" index="1"]
-wait_time = 0.001
+wait_time = 10.0
 one_shot = true
 
 [node name="TeleportSwitcheroo" type="Node" parent="SmallWorld/Lv1Base/lv1terrain/house" index="2" node_paths=PackedStringArray("Node1", "Node2")]
@@ -242,9 +340,10 @@ Node1 = NodePath("../NormalCollision")
 Node2 = NodePath("../ButtonOpenCollision")
 
 [node name="OnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="4"]
-aabb = AABB(-0.500207, -0.029282, -0.10767, 1.21331, 2.62814, 0.381355)
+aabb = AABB(-0.500207, -0.029282, -0.143729, 1.21331, 2.62814, 0.837264)
 
 [node name="DeckBody" type="StaticBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.002, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/DeckBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 2.84217e-14, 0, 1.42109e-14, 1, 0, -0.1, -1.13)
@@ -336,22 +435,48 @@ stream = SubResource("AudioStreamRandomizer_ym6rh")
 
 [node name="cabin_door" parent="SmallWorld/Lv1Base/lv1terrain/house/Door" instance=ExtResource("14_3o4hv")]
 
-[node name="Doorbell" parent="SmallWorld/Lv1Base/lv1terrain/house" index="9" instance=ExtResource("8_j7c1c")]
+[node name="Doorbell" type="AnimatableBody3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="9" node_paths=PackedStringArray("AnimationPlayer")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.65, 1.94, 0.045)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_84ka3")
+AnimationPlayer = NodePath("AnimationPlayer")
+OpenAnimation = "open"
+CloseAnimation = "open"
+LockedAnimation = "ring"
 Locked = true
+Interruptible = false
+
+[node name="doorbell2" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell" instance=ExtResource("2_7ivjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell"]
+libraries = {
+"": SubResource("AnimationLibrary_5mna5")
+}
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 0, 0.033)
+shape = SubResource("BoxShape3D_whjq6")
+
+[node name="RingPlayer" type="AudioStreamPlayer3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32232, 0.688964, -1.07294)
+stream = ExtResource("15_x3jb3")
 
 [node name="CreekPlayer" type="AudioStreamPlayer3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Doorbell"]
 stream = ExtResource("14_qv0fn")
 
 [node name="Teleporter" type="Area3D" parent="SmallWorld/Lv1Base/lv1terrain/house" index="10" node_paths=PackedStringArray("ExitNode")]
 process_mode = 3
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.402, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("9_eeu1l")
 ExitNode = NodePath("../../../../../BigWorld/Lv1Base/lv1terrain/house/TeleporterExit")
 PositionScale = 10.0
+NearClipMultiply = 3.0
+FarClipMultiply = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmallWorld/Lv1Base/lv1terrain/house/Teleporter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.7)
@@ -369,14 +494,17 @@ transform = Transform3D(0.749649, 0.342097, -0.566565, -2.11985e-08, 0.856051, 0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_hovoa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10207, 1.94341, 5.58819)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_njnmo")
+transform = Transform3D(-0.484718, 0, 0.87467, 0, 1, 0, -0.87467, 0, -0.484718, 31.7558, 64.6922, 10.0096)
 
 [node name="CircularHallway" parent="." instance=ExtResource("14_dw3tq")]
 
 [node name="TeleporterExit" type="Node3D" parent="CircularHallway"]
+
+[node name="AmbientSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_pbdgn")
+volume_db = -15.273
+autoplay = true
+max_polyphony = 2
 
 [connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D/HallwayTeleport" to="BigWorld" method="queue_free" flags=6 unbinds=1]
 [connection signal="Teleported" from="BigWorld/Lv1Base/lv1terrain/house/hallway_entrance/Area3D/HallwayTeleport" to="BigWorld/Lv1Base/lv1terrain/house/HallwaySwitcheroo" method="Switch" flags=6 unbinds=1]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bifpk08art3ps"]
+[gd_scene load_steps=18 format=3 uid="uid://bifpk08art3ps"]
 
 [ext_resource type="PackedScene" uid="uid://kvkxendugi4e" path="res://assets/models/rooms/bridge_thing.glb" id="1_x8k6u"]
 [ext_resource type="Script" path="res://src/Things/BridgeThing.cs" id="2_e7hgq"]
-[ext_resource type="AudioStream" uid="uid://chwgfiopplpio" path="res://assets/sounds/window_smash.ogg" id="3_e4mog"]
+[ext_resource type="AudioStream" uid="uid://34f0fi0v4d6a" path="res://assets/sounds/bridge_collapse.ogg" id="3_hawhe"]
+[ext_resource type="PackedScene" uid="uid://mkyv3m2w7xg" path="res://assets/models/hallway_door.glb" id="4_84k5t"]
+[ext_resource type="AudioStream" uid="uid://ct681boupo1rq" path="res://assets/sounds/boom.ogg" id="4_dbna5"]
+[ext_resource type="AudioStream" uid="uid://bhxtwbue37fmc" path="res://assets/sounds/whoosh.ogg" id="4_fhptj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sxwoo"]
 size = Vector3(7, 5, 1)
@@ -15,6 +18,9 @@ size = Vector3(3, 1, 28)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_weke5"]
 size = Vector3(1, 4, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bamua"]
+size = Vector3(0.45, 3, 0.45)
 
 [sub_resource type="Animation" id="Animation_4xnkb"]
 length = 0.001
@@ -111,7 +117,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_8jv2e"]
 resource_name = "break"
-length = 1.6
+length = 10.426
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -132,7 +138,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.0472, 0, 1.04811, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.0472, -0.2, 1.0523, 0.25, 0),
 "times": PackedFloat32Array(0, 1.6)
 }
 tracks/2/type = "bezier"
@@ -165,7 +171,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.048, 0, 1.0538, 0.25, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.048, -0.2, 1.0595, 0.25, 0),
 "times": PackedFloat32Array(0, 1.6)
 }
 tracks/5/type = "bezier"
@@ -202,6 +208,40 @@ tracks/7/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BoomBoomPlayer")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_hawhe")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_dbna5")
+}],
+"times": PackedFloat32Array(0, 1.6)
+}
+tracks/8/use_blend = true
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WhooshPlayer")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_fhptj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iry5x"]
 _data = {
@@ -273,15 +313,84 @@ shape = SubResource("BoxShape3D_weke5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -14)
 shape = SubResource("BoxShape3D_weke5")
 
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Bridge" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, 0)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Bridge" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, 0)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Bridge" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -4)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="Bridge" index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -4)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Bridge" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -8)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D9" type="CollisionShape3D" parent="Bridge" index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -8)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D10" type="CollisionShape3D" parent="Bridge" index="9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -12)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D11" type="CollisionShape3D" parent="Bridge" index="10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -12)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D12" type="CollisionShape3D" parent="Bridge" index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -16)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D13" type="CollisionShape3D" parent="Bridge" index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -16)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D14" type="CollisionShape3D" parent="Bridge" index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -20)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D15" type="CollisionShape3D" parent="Bridge" index="14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -20)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D16" type="CollisionShape3D" parent="Bridge" index="15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -24)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D17" type="CollisionShape3D" parent="Bridge" index="16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -24)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D18" type="CollisionShape3D" parent="Bridge" index="17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.5, -28)
+shape = SubResource("BoxShape3D_bamua")
+
+[node name="CollisionShape3D19" type="CollisionShape3D" parent="Bridge" index="18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.5, -28)
+shape = SubResource("BoxShape3D_bamua")
+
 [node name="bridge thing BROKEY exit" parent="." index="6"]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, -28)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
+[node name="BoomBoomPlayer" type="AudioStreamPlayer" parent="." index="7"]
+
+[node name="WhooshPlayer" type="AudioStreamPlayer" parent="." index="8"]
+volume_db = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 libraries = {
 "": SubResource("AnimationLibrary_iry5x")
 }
 
-[node name="BreakTrigger" type="Area3D" parent="." index="8"]
+[node name="BreakTrigger" type="Area3D" parent="." index="10"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
 collision_layer = 0
 collision_mask = 2
@@ -291,7 +400,7 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_wknye")
 
-[node name="Road" type="StaticBody3D" parent="." index="9"]
+[node name="Road" type="StaticBody3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Road" index="0"]
@@ -299,13 +408,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_cjknj")
 metadata/FootstepType = 2
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="10"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8308, -397.88, -0.0685458)
-stream = ExtResource("3_e4mog")
-pitch_scale = 1.22
-attenuation_filter_cutoff_hz = 10000.0
-
-[node name="LevelExit" type="Area3D" parent="." index="11"]
+[node name="LevelExit" type="Area3D" parent="." index="12"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -399, -14)
 collision_layer = 0
 collision_mask = 2
@@ -314,3 +417,6 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LevelExit" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_gxtvv")
+
+[node name="hallway_door" parent="." index="19" instance=ExtResource("4_84k5t")]
+transform = Transform3D(-0.886438, 0, 0.462847, 0, 1, 0, -0.462847, 0, -0.886438, 0.0471056, 0, -28.1979)

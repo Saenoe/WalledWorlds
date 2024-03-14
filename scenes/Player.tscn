@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dbgru8h8oo140"]
+[gd_scene load_steps=10 format=3 uid="uid://dbgru8h8oo140"]
 
 [ext_resource type="Script" path="res://src/Player/Player.cs" id="1_58bh7"]
 [ext_resource type="Material" uid="uid://caeh2rxd6gwts" path="res://assets/shaders/crosshair.material" id="2_6p5b4"]
 [ext_resource type="Script" path="res://src/Interaction/Crosshair.cs" id="3_oqtx0"]
-[ext_resource type="Script" path="res://src/Dev/FpsDisplay.cs" id="4_74ehq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_om4qt"]
 radius = 0.2
@@ -89,6 +88,7 @@ _data = {
 collision_layer = 2
 wall_min_slide_angle = 0.0
 script = ExtResource("1_58bh7")
+ZoomAmount = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000634491, 0.85, -0.00246811)
@@ -110,9 +110,6 @@ IdleInnerDotRadius = 0.012
 IdleOuterRingRadius = 0.0
 ActiveOuterRingRadius = 0.06
 
-[node name="Node" type="Node" parent="Camera"]
-script = ExtResource("4_74ehq")
-
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
 area_mask = 2
 
@@ -121,4 +118,4 @@ libraries = {
 "": SubResource("AnimationLibrary_dfwi4")
 }
 next/walk = &"walk"
-blend_times = [&"walk", &"walk", 0.5, &"walk", &"walkn\'t", 0.5, &"walkn\'t", &"walk", 0.5, &"walkn\'t", &"walkn\'t", 0.5]
+blend_times = [&"walkn\'t", &"walkn\'t", 0.5, &"walkn\'t", &"walk", 0.5, &"walk", &"walkn\'t", 0.5, &"walk", &"walk", 0.5]
