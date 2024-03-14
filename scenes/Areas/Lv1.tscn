@@ -494,7 +494,7 @@ transform = Transform3D(0.749649, 0.342097, -0.566565, -2.11985e-08, 0.856051, 0
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_hovoa")]
-transform = Transform3D(-0.484718, 0, 0.87467, 0, 1, 0, -0.87467, 0, -0.484718, 31.7558, 64.6922, 10.0096)
+transform = Transform3D(-0.691425, 0, 0.722448, 0, 1, 0, -0.722448, 0, -0.691425, 33.5263, 64.1949, 7.86416)
 
 [node name="CircularHallway" parent="." instance=ExtResource("14_dw3tq")]
 
