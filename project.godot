@@ -34,7 +34,7 @@ window/vsync/vsync_mode=0
 
 [dotnet]
 
-project/assembly_name="AcerolaJamEntry"
+project/assembly_name="WalledWorlds"
 
 [game]
 
