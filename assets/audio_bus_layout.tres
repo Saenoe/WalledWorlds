@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=12 format=3 uid="uid://b2itddh8vtv65"]
+[gd_resource type="AudioBusLayout" load_steps=13 format=3 uid="uid://b2itddh8vtv65"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_1u22v"]
 resource_name = "Reverb"
@@ -47,6 +47,12 @@ feedback_delay_ms = 500.0
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_pg60r"]
 resource_name = "Reverb"
 room_size = 0.17
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_4kl7x"]
+resource_name = "LowPassFilter"
+cutoff_hz = 800.0
+resonance = 0.77
+db = 1
 
 [resource]
 bus/0/volume_db = -0.130497
@@ -120,3 +126,11 @@ bus/8/volume_db = 0.0
 bus/8/send = &"Master"
 bus/8/effect/0/effect = SubResource("AudioEffectReverb_pg60r")
 bus/8/effect/0/enabled = true
+bus/9/name = &"Funny"
+bus/9/solo = false
+bus/9/mute = false
+bus/9/bypass_fx = false
+bus/9/volume_db = 0.0
+bus/9/send = &"Master"
+bus/9/effect/0/effect = SubResource("AudioEffectLowPassFilter_4kl7x")
+bus/9/effect/0/enabled = true

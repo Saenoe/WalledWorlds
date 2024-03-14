@@ -12,11 +12,12 @@ feet/grass0-5.ogg [1](https://freesound.org/people/GiocoSound/sounds/421129/) [2
 [wood_door_close.ogg](https://freesound.org/people/ninebilly/sounds/173018/)  
 [click.ogg](https://freesound.org/people/SomeoneCool15/sounds/423512/)  
 [splishy_splashy.ogg](https://freesound.org/people/kyles/sounds/450855/)  
-[metal_drag.ogg + CLOINK.ogg](https://freesound.org/people/thenotcheeseman/sounds/679206/)  
+[metal_drag.ogg + CLOINK.ogg + funny.ogg](https://freesound.org/people/thenotcheeseman/sounds/679206/)  
 [wood_door_open.ogg](https://freesound.org/people/EricsSoundschmiede/sounds/457360/)  
 [door_slam.ogg](https://freesound.org/people/bennstir/sounds/80929/)  
 [blackout.ogg](https://freesound.org/people/swag1773/sounds/636578/)  
 [squeak_door.ogg](https://freesound.org/people/kyles/sounds/51805/)
+[clanked.ogg](https://freesound.org/people/14G_Panska_Kaminkova_A/sounds/419968/)
 
 ### textures
 [dirt0.png](https://pixabay.com/photos/dirt-soil-potting-mix-ground-mud-947985/)  

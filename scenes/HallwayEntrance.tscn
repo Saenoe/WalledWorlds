@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b4ttgwbwv4pax" path="res://assets/models/hallway_piece.glb" id="2_kjwvq"]
 [ext_resource type="Script" path="res://src/Interaction/AnimatedDoor.cs" id="4_b677v"]
 [ext_resource type="PackedScene" uid="uid://mkyv3m2w7xg" path="res://assets/models/hallway_door.glb" id="5_2e3eg"]
+[ext_resource type="AudioStream" uid="uid://dtiap6fubpg4r" path="res://assets/sounds/wood_door_open.ogg" id="5_fuwkk"]
 [ext_resource type="PackedScene" uid="uid://cqae73d71dbwv" path="res://assets/models/the fork.glb" id="6_b4pt5"]
 [ext_resource type="AudioStream" uid="uid://dc7n4ds0ucvsi" path="res://assets/sounds/locked_wood_door.ogg" id="6_haom8"]
 [ext_resource type="AudioStream" uid="uid://deuj6pyk53pxe" path="res://assets/sounds/door_slam.ogg" id="7_ah3hn"]
-[ext_resource type="AudioStream" uid="uid://dcjigsup55psc" path="res://assets/sounds/door_creek.ogg" id="8_hsqgb"]
 [ext_resource type="PackedScene" uid="uid://dxtx6b1iwhpl2" path="res://scenes/CircularHallway/Rooms/BasicRoom.tscn" id="10_8b7wb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sh021"]
@@ -143,11 +143,11 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "clips": [{
-"end_offset": 4.4463,
-"start_offset": 0.6527,
-"stream": ExtResource("8_hsqgb")
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_fuwkk")
 }],
-"times": PackedFloat32Array(0.15)
+"times": PackedFloat32Array(0.1)
 }
 tracks/4/use_blend = true
 

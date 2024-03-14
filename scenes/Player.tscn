@@ -118,4 +118,4 @@ libraries = {
 "": SubResource("AnimationLibrary_dfwi4")
 }
 next/walk = &"walk"
-blend_times = [&"walkn\'t", &"walkn\'t", 0.5, &"walkn\'t", &"walk", 0.5, &"walk", &"walkn\'t", 0.5, &"walk", &"walk", 0.5]
+blend_times = [&"walk", &"walk", 0.5, &"walk", &"walkn\'t", 0.5, &"walkn\'t", &"walk", 0.5, &"walkn\'t", &"walkn\'t", 0.5]

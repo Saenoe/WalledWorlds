@@ -7,17 +7,17 @@ public partial class HallwayTeleport : Area3D {
 
 	private Timer _teleportTimer;
 	private SeamlessTeleporter _teleporter;
-	private AudioStreamPlayer3D _player;
+	private AnimationPlayer _player;
 	private VisibleOnScreenNotifier3D _entranceVisibleNotifier;
 
 	public override void _Ready() {
 		_teleportTimer = GetNode<Timer>("TeleportTimer");
 		_teleporter = GetNode<SeamlessTeleporter>("HallwayTeleport");
-		_player = GetNode<AudioStreamPlayer3D>("AudioStreamPlayer3D");
+		_player = GetNode<AnimationPlayer>("AnimationPlayer");
 		_entranceVisibleNotifier = GetNode<VisibleOnScreenNotifier3D>("EntranceVisibleNotifier");
 	
 		Connect(SignalName.BodyEntered, Callable.From((Node3D body) => {
-			_player.Play();
+			_player.Play("the");
 			_teleportTimer.Timeout += () => {
 				if (!_entranceVisibleNotifier.IsOnScreen()) {
 					CommenceTeleportation(body);

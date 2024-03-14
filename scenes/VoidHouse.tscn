@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwyija3dd3k7e"]
+[gd_scene load_steps=10 format=3 uid="uid://cwyija3dd3k7e"]
 
 [ext_resource type="PackedScene" uid="uid://cbw324ord61qa" path="res://assets/models/void_house.glb" id="1_pt5vi"]
 [ext_resource type="PackedScene" uid="uid://b57itddtdd8yl" path="res://assets/models/light_cone.glb" id="2_v7fjr"]
@@ -15,6 +15,9 @@ size = Vector3(0.2, 3, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r17od"]
 size = Vector3(6.79492, 3.7724, 3.89569)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwpf3"]
+size = Vector3(1, 3, 1.6)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yrii7"]
 size = Vector3(0.8, 2, 0.1)
@@ -55,6 +58,10 @@ shape = SubResource("BoxShape3D_1i3fb")
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="Collision" index="6"]
 transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 2.28099, -1.80433)
 shape = SubResource("BoxShape3D_r17od")
+
+[node name="CollisionShape3D8" type="CollisionShape3D" parent="Collision" index="7"]
+transform = Transform3D(1, 0, 0, 0, 1, 1.10845e-12, 0, 5.54223e-13, 1, -3.7, 1.37, -1.85)
+shape = SubResource("BoxShape3D_kwpf3")
 
 [node name="TheDoor" type="StaticBody3D" parent="." index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0.40071, 0.07)
