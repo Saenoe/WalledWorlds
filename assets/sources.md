@@ -5,6 +5,7 @@
 feet/grass0-5.ogg [1](https://freesound.org/people/GiocoSound/sounds/421129/) [2](https://freesound.org/people/Fission9/sounds/521587/)  
 [feet/concrete0-5.ogg](https://freesound.org/people/Kinoton/sounds/546827/)
 [feet/carpet0-4.ogg](https://freesound.org/people/MindlessTrails/sounds/509534/)
+[feet/wood0-4.ogg](https://freesound.org/people/Nox_Sound/sounds/533044/)
 [locked_metal_door.ogg](https://freesound.org/people/giddster/sounds/336660/)  
 [forest_abience.ogg](https://freesound.org/people/sonidosreales245/sounds/517042/)  
 [window_smash.ogg](https://freesound.org/people/egomassive/sounds/536763/)  
@@ -18,6 +19,7 @@ feet/grass0-5.ogg [1](https://freesound.org/people/GiocoSound/sounds/421129/) [2
 [blackout.ogg](https://freesound.org/people/swag1773/sounds/636578/)  
 [squeak_door.ogg](https://freesound.org/people/kyles/sounds/51805/)
 [clanked.ogg](https://freesound.org/people/14G_Panska_Kaminkova_A/sounds/419968/)
+[bridge_collapse.ogg](https://freesound.org/people/greyfeather/sounds/712918/)
 
 ### textures
 [dirt0.png](https://pixabay.com/photos/dirt-soil-potting-mix-ground-mud-947985/)  
